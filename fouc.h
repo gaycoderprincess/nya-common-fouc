@@ -17,6 +17,7 @@
 #include "types/HUD.h"
 #include "types/LUA.h"
 #include "fo2helpers.h"
+#include "fo2hooks.h"
 
 uintptr_t SetTextureFolder_call = 0x5A6E20;
 void __attribute__((naked)) __fastcall SetTextureFolder(const char* path) {
