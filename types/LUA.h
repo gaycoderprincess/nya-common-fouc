@@ -28,3 +28,4 @@ auto lua_getfield = (void(*)(void*, int, const char*))0x633980;
 auto lua_rawgeti = (void(*)(void*, int, int))0x633A80;
 auto lua_gettop = (int(*)(void*))0x632B10;
 auto lua_settop = (void(*)(void*, int))0x632B30;
+auto lua_type = (int(*)(void*, int))0x632F20;

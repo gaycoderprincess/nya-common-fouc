@@ -11,7 +11,8 @@ int GetCarDBID(int dataId) {
 	if (matchups[dataId] != -1) return matchups[dataId];
 
 	auto db = GetLiteDB();
-	for (int i = 0; i < 255; i++) {
+	int count = db->GetTable("FlatOut2.Cars")->GetPropertyArraySize("Car");
+	for (int i = 0; i < count; i++) {
 		auto table = db->GetTable(std::format("FlatOut2.Cars.Car[{}]", i).c_str());
 		auto str = (const char*)table->GetPropertyPointer("DataPath");
 		if (str == std::format("data/Cars/Car_{}/", dataId)) {
@@ -24,7 +25,8 @@ int GetCarDBID(int dataId) {
 
 int GetCarByName(const std::string& name) {
 	auto db = GetLiteDB();
-	for (int i = 0; i < 255; i++) {
+	int count = db->GetTable("FlatOut2.Cars")->GetPropertyArraySize("Car");
+	for (int i = 0; i < count; i++) {
 		auto table = db->GetTable(std::format("FlatOut2.Cars.Car[{}]", i).c_str());
 		auto str = (const char*)table->GetPropertyPointer("Name");
 		if (str == name) {
@@ -54,4 +56,19 @@ const char* GetTrackName(int id) {
 	lua_settop(lua, oldtop);
 
 	return name;
+}
+
+bool DoesTrackValueExist(int id, const char* name) {
+	auto lua = pScriptHost->pLUAStruct->pLUAContext;
+	auto oldtop = lua_gettop(lua);
+
+	lua_getfield(lua, -10002, "Levels");
+	lua_rawgeti(lua, lua_gettop(lua), id);
+
+	auto oldtop2 = lua_gettop(lua);
+	lua_setglobal(lua, name);
+	lua_gettable(lua, oldtop2);
+	auto value = lua_type(lua, lua_gettop(lua));
+	lua_settop(lua, oldtop);
+	return value;
 }
