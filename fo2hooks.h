@@ -3,6 +3,8 @@ namespace NyaFO2Hooks {
 	std::vector<void(*)()> aD3DResetFuncs;
 	std::vector<void(*)(HWND, UINT, WPARAM, LPARAM)> aWndProcFuncs;
 	std::vector<void(*)(void*)> aScriptFuncs;
+	std::vector<void(*)()> aOnLoadInGameFuncs;
+	std::vector<void(*)()> aOnLoadMenuFuncs;
 
 	auto EndSceneOrig = (HRESULT(__thiscall*)(void*))nullptr;
 	HRESULT __fastcall EndSceneHook(void* a1) {
@@ -36,6 +38,42 @@ namespace NyaFO2Hooks {
 		return lua_pushcfunction_hooked(a1, a2, a3);
 	}
 
+	uintptr_t FreeLoadingScreenOrig = 0;
+	void OnLoadInGameHook() {
+		for (auto& func : aOnLoadInGameFuncs) {
+			func();
+		}
+	}
+
+	int __attribute__((naked)) OnLoadInGameHookASM() {
+		__asm__ (
+			"pushad\n\t"
+			"call %1\n\t"
+			"popad\n\t"
+			"jmp %0\n\t"
+				:
+				:  "m" (FreeLoadingScreenOrig), "i" (OnLoadInGameHook)
+		);
+	}
+
+	uintptr_t FreeLoadingScreenOrig2 = 0;
+	void OnLoadMenuHook() {
+		for (auto& func : aOnLoadMenuFuncs) {
+			func();
+		}
+	}
+
+	int __attribute__((naked)) OnLoadMenuHookASM() {
+		__asm__ (
+			"pushad\n\t"
+			"call %1\n\t"
+			"popad\n\t"
+			"jmp %0\n\t"
+				:
+				:  "m" (FreeLoadingScreenOrig2), "i" (OnLoadMenuHook)
+		);
+	}
+
 	void PlaceD3DHooks() {
 		if (!EndSceneOrig) {
 			EndSceneOrig = (HRESULT(__thiscall*)(void*))(*(uintptr_t*)0x677448);
@@ -54,6 +92,19 @@ namespace NyaFO2Hooks {
 	void PlaceScriptHook() {
 		if (!lua_pushcfunction_hooked) {
 			lua_pushcfunction_hooked = (void(*)(void*, void*, int))NyaHookLib::PatchRelative(NyaHookLib::CALL, 0x46256C, &ScriptHook);
+		}
+	}
+
+	void PlaceOnLoadInGameHook() {
+		if (!FreeLoadingScreenOrig) {
+			//FreeLoadingScreenOrig = NyaHookLib::PatchRelative(NyaHookLib::CALL, 0x48A244, &OnLoadInGameHookASM);
+			FreeLoadingScreenOrig = NyaHookLib::PatchRelative(NyaHookLib::CALL, 0x48A26B, &OnLoadInGameHookASM);
+		}
+	}
+
+	void PlaceOnLoadMenuHook() {
+		if (!FreeLoadingScreenOrig2) {
+			FreeLoadingScreenOrig2 = NyaHookLib::PatchRelative(NyaHookLib::CALL, 0x46F943, &OnLoadMenuHookASM);
 		}
 	}
 }

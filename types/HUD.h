@@ -1,5 +1,3 @@
-auto& pLoadingScreen = *(void**)0x929902C;
-
 class HUDElement {
 public:
 	uint8_t _0[0xE8];

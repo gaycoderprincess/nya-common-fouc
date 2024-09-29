@@ -14,10 +14,15 @@ enum eDBValueType {
 
 class LiteDb {
 public:
+	struct tMappedValue {
+		const char* name;
+		uint32_t typeFlags; // usually 0x40X, last byte is the type, arrays seem to be 0x100800X
+		void* valuePtr;
+	};
 
 	virtual void _vf0() = 0;
-	virtual void _vf1() = 0;
-	virtual void _vf2() = 0;
+	virtual void AddMappedTable(const char* name, tMappedValue* values, int flags, int a4) = 0; // flags and a4 usually 2 0
+	virtual LiteDb* GetTable_2(const char* name) = 0; // this jumps to GetTable if name isn't null
 	virtual void _vf3() = 0;
 	virtual const char* GetName() = 0;
 	virtual void _vf5() = 0;
@@ -59,8 +64,8 @@ public:
 	virtual void* GetPropertyAsVector2(void* out, const char* name, int offset) = 0;
 	virtual void* GetPropertyAsVector3(void* out, const char* name, int offset) = 0;
 	virtual void* GetPropertyAsVector4(void* out, const char* name, int offset) = 0;
-	virtual LiteDb* GetPropertyAsNode(void* out, const char* name, int offset) = 0;
-	virtual LiteDb* GetPropertyAsNodePtr(const char* name, int offset) = 0;
+	virtual char* GetPropertyAsNodePath(char* out, const char* name, int offset) = 0;
+	virtual LiteDb* GetPropertyAsNode(const char* name, int offset) = 0;
 	virtual const char* GetPropertyAsString(const char* name) = 0;
 };
 auto GetLiteDB = (LiteDb*(*)())0x5A5EB0;

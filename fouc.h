@@ -16,6 +16,7 @@
 #include "types/Font.h"
 #include "types/HUD.h"
 #include "types/LUA.h"
+#include "types/LoadingScreen.h"
 #include "fo2helpers.h"
 #include "fo2hooks.h"
 
