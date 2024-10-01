@@ -17,6 +17,8 @@ public:
 		ArcadeRaceStats* races;
 		uint32_t numRaces;
 	} aArcadeClasses[0]; // +3D0
-	uint8_t _3D0[0xEEA];
+	uint8_t _3D0[0xEA0];
+	wchar_t sPlayerName[16]; // +1270
+	uint8_t _1290[0x2A];
 	uint8_t nActiveCar; // +12BA
 };

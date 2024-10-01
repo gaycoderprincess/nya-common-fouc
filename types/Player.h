@@ -93,6 +93,21 @@ public:
 	virtual void TriggerEvent(tEventData* properties) = 0;
 };
 
+class PlayerInfo {
+public:
+	wchar_t sPlayerName[16]; // +0
+	int nCar; // +20
+	int nCarSkin; // +24
+	int nCarUpgrades; // +28
+	int nType; // +2C
+	int nController; // +30
+	int nCharType; // +34
+	int nPeerId; // +38
+	int nNetworkId; // +3C
+	uint8_t _40[0x10]; // +40
+};
+static_assert(sizeof(PlayerInfo) == 0x50);
+
 Player* GetPlayer(int id) {
 	auto host = pGame->pHost;
 	if (!host) return nullptr;
