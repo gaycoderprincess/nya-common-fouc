@@ -31,12 +31,12 @@ public:
 	virtual LiteDb* GetParent() = 0;
 	virtual void _vf9() = 0;
 	virtual LiteDb* GetTable(const char* name) = 0;
-	virtual void _vf11() = 0;
+	virtual LiteDb* GetChildByIndex(int index) = 0;
 	virtual void GetFullPath(char* out) = 0;
-	virtual void _vf13() = 0;
-	virtual void _vf14() = 0;
+	virtual int GetNumProperties() = 0;
+	virtual const char* GetPropertyNameByIndex(int index) = 0;
 	virtual bool DoesPropertyExist(const char* name) = 0;
-	virtual void _vf16() = 0;
+	virtual int GetPropertyType(const char* name) = 0;
 	virtual void _vf17() = 0;
 	virtual void _vf18() = 0;
 	virtual int GetPropertyArraySize(const char* name) = 0;
