@@ -1,3 +1,7 @@
+int GetNumCars() {
+	return GetLiteDB()->GetTable("FlatOut2.Cars")->GetPropertyArraySize("Car");
+}
+
 int GetCarDBID(int dataId) {
 	static int matchups[1024];
 	static bool bOnce = true;
@@ -11,7 +15,7 @@ int GetCarDBID(int dataId) {
 	if (matchups[dataId] != -1) return matchups[dataId];
 
 	auto db = GetLiteDB();
-	int count = db->GetTable("FlatOut2.Cars")->GetPropertyArraySize("Car");
+	int count = GetNumCars();
 	for (int i = 0; i < count; i++) {
 		auto table = db->GetTable(std::format("FlatOut2.Cars.Car[{}]", i).c_str());
 		auto str = (const char*)table->GetPropertyPointer("DataPath");
@@ -25,7 +29,7 @@ int GetCarDBID(int dataId) {
 
 int GetCarByName(const std::string& name) {
 	auto db = GetLiteDB();
-	int count = db->GetTable("FlatOut2.Cars")->GetPropertyArraySize("Car");
+	int count = GetNumCars();
 	for (int i = 0; i < count; i++) {
 		auto table = db->GetTable(std::format("FlatOut2.Cars.Car[{}]", i).c_str());
 		auto str = (const char*)table->GetPropertyPointer("Name");
@@ -41,21 +45,23 @@ const char* GetCarName(int id) {
 	return (const char*)table->GetPropertyPointer("Name");
 }
 
-const char* GetTrackName(int id) {
+bool DoesTrackExist(int id) {
 	auto lua = pScriptHost->pLUAStruct->pLUAContext;
 	auto oldtop = lua_gettop(lua);
 
 	lua_getfield(lua, -10002, "Levels");
 	lua_rawgeti(lua, lua_gettop(lua), id);
-
-	auto oldtop2 = lua_gettop(lua);
-	lua_setglobal(lua, "Name");
-	lua_gettable(lua, oldtop2);
-	auto name = (const char*)lua_tolstring(lua, lua_gettop(lua), 0);
-
+	auto value = lua_type(lua, lua_gettop(lua));
 	lua_settop(lua, oldtop);
+	return value;
+}
 
-	return name;
+int GetNumTracks() {
+	int i = 0;
+	while (DoesTrackExist(i+1)) {
+		i++;
+	}
+	return i;
 }
 
 bool DoesTrackValueExist(int id, const char* name) {
@@ -71,4 +77,23 @@ bool DoesTrackValueExist(int id, const char* name) {
 	auto value = lua_type(lua, lua_gettop(lua));
 	lua_settop(lua, oldtop);
 	return value;
+}
+
+const char* GetTrackName(int id) {
+	if (!DoesTrackValueExist(id, "Name")) return nullptr;
+
+	auto lua = pScriptHost->pLUAStruct->pLUAContext;
+	auto oldtop = lua_gettop(lua);
+
+	lua_getfield(lua, -10002, "Levels");
+	lua_rawgeti(lua, lua_gettop(lua), id);
+
+	auto oldtop2 = lua_gettop(lua);
+	lua_setglobal(lua, "Name");
+	lua_gettable(lua, oldtop2);
+	auto name = (const char*)lua_tolstring(lua, lua_gettop(lua), 0);
+
+	lua_settop(lua, oldtop);
+
+	return name;
 }

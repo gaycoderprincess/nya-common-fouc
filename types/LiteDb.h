@@ -14,11 +14,15 @@ enum eDBValueType {
 
 class LiteDb {
 public:
+	uint8_t _4[0x10];
+
 	struct tMappedValue {
 		const char* name;
 		uint32_t typeFlags; // usually 0x40X, last byte is the type, arrays seem to be 0x100800X
 		void* valuePtr;
 	};
+
+	static inline auto& gNodes = *(LiteDb**)0x846684;
 
 	virtual void _vf0() = 0;
 	virtual void AddMappedTable(const char* name, tMappedValue* values, int flags, int a4) = 0; // flags and a4 usually 2 0

@@ -39,6 +39,9 @@ public:
 	float fLookAheadMin; // +9DC
 	float fLookAheadMax; // +9E0
 	float fLookAheadModifier; // +9E4
+	uint8_t _9E8[0x68];
+	int nAIId; // +A50
+	int nAIClassId; // +A54
 
 	static inline uintptr_t DrawJoinedGameNotification_call = 0x4E1B00;
 	void __attribute__((naked)) __fastcall DrawJoinedGameNotification(const wchar_t* string) {
@@ -113,6 +116,7 @@ Player* GetPlayer(int id) {
 	if (!host) return nullptr;
 	auto players = host->aPlayers;
 	if (!players) return nullptr;
+	if (id > host->GetNumPlayers()) return nullptr;
 	auto ply = players[id];
 	if (!ply || !ply->pCar) return nullptr;
 	return ply;

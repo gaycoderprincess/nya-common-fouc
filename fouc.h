@@ -13,7 +13,9 @@
 #include "types/CameraManager.h"
 #include "types/DeviceD3d.h"
 #include "types/GameSettings.h"
+#ifndef NYA_COMMON_NO_D3D
 #include "types/Font.h"
+#endif
 #include "types/HUD.h"
 #include "types/LUA.h"
 #include "types/LoadingScreen.h"

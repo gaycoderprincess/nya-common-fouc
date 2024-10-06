@@ -3,6 +3,10 @@ public:
 	uint8_t _0[0x14];
 	Player** aPlayers;
 	Player** aPlayersEnd;
+
+	int GetNumPlayers() {
+		return aPlayersEnd - aPlayers;
+	}
 };
 
 enum eGameState {

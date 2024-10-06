@@ -54,6 +54,18 @@ public:
 #endif
 
 	static inline auto CalculatePerformance = (void(*)(float* out, float torque, float torqueRPM, float power, float powerRPM, float zeroRPM, float redlineRPM))0x45C750;
+
+	static inline uintptr_t Fix_call = 0x4287A0;
+	int __attribute__((naked)) __fastcall Fix(bool resetSomeValue) {
+		__asm__ (
+			"mov eax, ecx\n\t"
+			"push edx\n\t"
+			"call %0\n\t"
+			"ret\n\t"
+				:
+				:  "m" (Fix_call)
+		);
+	}
 };
 
 uintptr_t GetCarDataPath_call = 0x4C6340;
