@@ -15,7 +15,7 @@ enum eGameState {
 	GAME_STATE_RACE
 };
 
-class Game {
+class GameFlow {
 public:
 	uint8_t _0[0x4A4];
 	int nGameState;
@@ -63,7 +63,7 @@ public:
 	static inline auto& fFragDerbyBombMaxDistance = *(float*)0x76510C;
 
 	static inline uintptr_t AddArcadeRaceScore_call = 0x46F300;
-	static void __attribute__((naked)) __fastcall AddArcadeRaceScore(const wchar_t* name, int category, Game* game, float score, int unknown) {
+	static void __attribute__((naked)) __fastcall AddArcadeRaceScore(const wchar_t* name, int category, GameFlow* game, float score, int unknown) {
 		__asm__ (
 			"mov eax, ecx\n\t"
 			"mov ecx, edx\n\t"
@@ -72,5 +72,9 @@ public:
 				:  "m" (AddArcadeRaceScore_call)
 		);
 	}
+
+	static GameFlow* GetInstance() {
+		return *(GameFlow**)0x9298FAC;
+	}
 };
-auto& pGame = *(Game**)0x9298FAC;
+auto& pGameFlow = *(GameFlow**)0x9298FAC;

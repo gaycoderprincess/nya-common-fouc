@@ -112,7 +112,7 @@ public:
 static_assert(sizeof(PlayerInfo) == 0x50);
 
 Player* GetPlayer(int id) {
-	auto host = pGame->pHost;
+	auto host = pGameFlow->pHost;
 	if (!host) return nullptr;
 	auto players = host->aPlayers;
 	if (!players) return nullptr;
