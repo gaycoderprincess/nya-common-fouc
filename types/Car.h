@@ -9,14 +9,23 @@ static_assert(sizeof(Tire) == 0x3B0);
 class Player;
 class Car {
 public:
-	uint8_t _0[0x1C0];
+	uint8_t _0[0x170];
+	NyaVec3 vCollisionFullMin; // +170
+	NyaVec3 vCollisionFullMax; // +17C
+	NyaVec3 vCollisionBottomMin; // +188
+	NyaVec3 vCollisionBottomMax; // +194
+	NyaVec3 vCollisionTopMin; // +1A0
+	NyaVec3 vCollisionTopMax; // +1AC
+	uint8_t _1B8[0x8];
 	float mMatrix[4*4]; // +1C0
 	uint8_t _200[0x80];
 	float qQuaternion[4]; // +280
 	float vVelocity[3]; // +290
 	uint8_t _29C[0x4];
 	float vAngVelocity[3]; // +2A0
-	uint8_t _2AC[0x340];
+	uint8_t _2AC[0x4];
+	float vVelocityGravity[3]; // +2B0
+	uint8_t _2BC[0x330];
 	float fNitro; // +5EC
 	uint8_t _5F0[0x440];
 	Tire aTires[4]; // +A30
@@ -50,6 +59,9 @@ public:
 	}
 	inline NyaVec3* GetAngVelocity() {
 		return (NyaVec3*)vAngVelocity;
+	}
+	inline NyaVec3* GetVelocityGravity() {
+		return (NyaVec3*)vVelocityGravity;
 	}
 #endif
 

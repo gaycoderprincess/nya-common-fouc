@@ -79,8 +79,8 @@ bool DoesTrackValueExist(int id, const char* name) {
 	return value;
 }
 
-const char* GetTrackName(int id) {
-	if (!DoesTrackValueExist(id, "Name")) return nullptr;
+float GetTrackValueNumber(int id, const char* name) {
+	if (!DoesTrackValueExist(id, name)) return 0;
 
 	auto lua = pScriptHost->pLUAStruct->pLUAContext;
 	auto oldtop = lua_gettop(lua);
@@ -89,11 +89,34 @@ const char* GetTrackName(int id) {
 	lua_rawgeti(lua, lua_gettop(lua), id);
 
 	auto oldtop2 = lua_gettop(lua);
-	lua_setglobal(lua, "Name");
+	lua_setglobal(lua, name);
 	lua_gettable(lua, oldtop2);
-	auto name = (const char*)lua_tolstring(lua, lua_gettop(lua), 0);
+	auto f = luaL_checknumber(lua, lua_gettop(lua));
 
 	lua_settop(lua, oldtop);
 
-	return name;
+	return f;
+}
+
+const char* GetTrackValueString(int id, const char* name) {
+	if (!DoesTrackValueExist(id, name)) return nullptr;
+
+	auto lua = pScriptHost->pLUAStruct->pLUAContext;
+	auto oldtop = lua_gettop(lua);
+
+	lua_getfield(lua, -10002, "Levels");
+	lua_rawgeti(lua, lua_gettop(lua), id);
+
+	auto oldtop2 = lua_gettop(lua);
+	lua_setglobal(lua, name);
+	lua_gettable(lua, oldtop2);
+	auto str = (const char*)lua_tolstring(lua, lua_gettop(lua), 0);
+
+	lua_settop(lua, oldtop);
+
+	return str;
+}
+
+const char* GetTrackName(int id) {
+	return GetTrackValueString(id, "Name");
 }
