@@ -15,6 +15,14 @@ enum eGameState {
 	GAME_STATE_RACE
 };
 
+enum eRaceState {
+	RACE_STATE_TRACKINTRO = 2,
+	RACE_STATE_COUNTDOWN = 7,
+	RACE_STATE_RACING = 8,
+	RACE_STATE_QUITTING = 9,
+	RACE_STATE_WANTSTOQUIT = 11,
+};
+
 class GameFlow {
 public:
 	uint8_t _0[0x4A4];
@@ -48,7 +56,9 @@ public:
 	uint32_t nArcadeRewardWrecked; // +26CC
 	uint32_t nArcadeRewardRagdolled; // +26D0
 	uint32_t nArcadeRewardBigAir; // +26D4
-	uint8_t _26D8[0x148];
+	uint8_t _26D8[0x60];
+	uint32_t nRaceState; // +2738
+	uint8_t _273C[0xE4];
 	PlayerHost* pHost; // +2820
 	uint8_t _2824[0x62C];
 	PlayerProfile Profile; // +2E50
