@@ -21,6 +21,7 @@
 #include "types/LoadingScreen.h"
 #include "types/Environment.h"
 #include "types/DynamicObject.h"
+#include "types/Track.h"
 #include "fo2helpers.h"
 #include "fo2hooks.h"
 

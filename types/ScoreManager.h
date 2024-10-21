@@ -2,7 +2,9 @@ class PlayerScoreRace {
 public:
 	uint8_t _0[0x4];
 	uint32_t nPlayerId; // 4
-	uint8_t _8[0x3C];
+	uint8_t _8[0x34];
+	float fProgress; // 3C
+	uint8_t _40[0x4];
 	uint32_t nCurrentLap; // 44
 };
 
