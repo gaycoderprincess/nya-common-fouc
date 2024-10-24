@@ -40,7 +40,8 @@ public:
 	int nInstantActionCarSkin; // +4DC
 	uint8_t _4E0[0x18];
 	float fNitroMultiplier; // +4F8
-	uint8_t _4FC[0x1C];
+	uint8_t _4FC[0x18];
+	int nGameRulesIngame; // +514
 	int nStuntType; // +518
 	int nDerbyType; // +51C
 	uint8_t _520[0xFCC];
