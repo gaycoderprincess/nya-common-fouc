@@ -1,9 +1,15 @@
 class Model {
 public:
 	uint8_t _0[0x8];
+#ifdef NYA_MATH_H
 	NyaVec3 vBBoxMin; // +8
 	NyaVec3 vBBoxMax; // +14
 	NyaVec3 vRadius; // +20
+#else
+	float vBBoxMin[3]; // +8
+	float vBBoxMax[3]; // +14
+	float vRadius[3]; // +20
+#endif
 	float fRadius; // +2C
 };
 

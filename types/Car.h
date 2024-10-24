@@ -10,12 +10,21 @@ class Player;
 class Car {
 public:
 	uint8_t _0[0x170];
+#ifdef NYA_MATH_H
 	NyaVec3 vCollisionFullMin; // +170
 	NyaVec3 vCollisionFullMax; // +17C
 	NyaVec3 vCollisionBottomMin; // +188
 	NyaVec3 vCollisionBottomMax; // +194
 	NyaVec3 vCollisionTopMin; // +1A0
 	NyaVec3 vCollisionTopMax; // +1AC
+#else
+	float vCollisionFullMin[3]; // +170
+	float vCollisionFullMax[3]; // +17C
+	float vCollisionBottomMin[3]; // +188
+	float vCollisionBottomMax[3]; // +194
+	float vCollisionTopMin[3]; // +1A0
+	float vCollisionTopMax[3]; // +1AC
+#endif
 	uint8_t _1B8[0x8];
 	float mMatrix[4*4]; // +1C0
 	uint8_t _200[0x80];

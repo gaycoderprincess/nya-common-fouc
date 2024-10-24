@@ -11,9 +11,9 @@
 #include "types/Player.h"
 #include "types/Garage.h"
 #include "types/CameraManager.h"
-#include "types/DeviceD3d.h"
 #include "types/GameSettings.h"
 #ifndef NYA_COMMON_NO_D3D
+#include "types/DeviceD3d.h"
 #include "types/Font.h"
 #endif
 #include "types/HUD.h"
