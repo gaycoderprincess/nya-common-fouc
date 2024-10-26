@@ -6,6 +6,7 @@ public:
 	float fProgress; // 3C
 	uint8_t _40[0x4];
 	uint32_t nCurrentLap; // 44
+	uint32_t nLapTimes[10];
 };
 
 class PlayerScoreDerby {

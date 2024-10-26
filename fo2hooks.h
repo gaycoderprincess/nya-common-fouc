@@ -5,6 +5,7 @@ namespace NyaFO2Hooks {
 	std::vector<void(*)(void*)> aScriptFuncs;
 	std::vector<void(*)()> aOnLoadInGameFuncs;
 	std::vector<void(*)()> aOnLoadMenuFuncs;
+	std::vector<void(*)(void*)> aHUDKeywordFuncs;
 
 	auto EndSceneOrig = (HRESULT(__thiscall*)(void*))nullptr;
 	HRESULT __fastcall EndSceneHook(void* a1) {
@@ -74,6 +75,25 @@ namespace NyaFO2Hooks {
 		);
 	}
 
+	void __fastcall HUDKeywordHook(void* a3) {
+		for (auto& func : aHUDKeywordFuncs) {
+			func(a3);
+		}
+	}
+
+	uintptr_t HUDKeywordASM_jmp = 0;
+	float __attribute__((naked)) HUDKeywordASM() {
+		__asm__ (
+			"pushad\n\t"
+			"mov ecx, esi\n\t"
+			"call %1\n\t"
+			"popad\n\t"
+			"jmp %0\n\t"
+				:
+				:  "m" (HUDKeywordASM_jmp), "i" (HUDKeywordHook)
+		);
+	}
+
 	void PlaceD3DHooks() {
 		if (!EndSceneOrig) {
 			EndSceneOrig = (HRESULT(__thiscall*)(void*))(*(uintptr_t*)0x677448);
@@ -105,6 +125,12 @@ namespace NyaFO2Hooks {
 	void PlaceOnLoadMenuHook() {
 		if (!FreeLoadingScreenOrig2) {
 			FreeLoadingScreenOrig2 = NyaHookLib::PatchRelative(NyaHookLib::CALL, 0x46F943, &OnLoadMenuHookASM);
+		}
+	}
+
+	void PlaceHUDKeywordHook() {
+		if (!HUDKeywordASM_jmp) {
+			HUDKeywordASM_jmp = NyaHookLib::PatchRelative(NyaHookLib::CALL, 0x4EA8C7, &HUDKeywordASM);
 		}
 	}
 }
