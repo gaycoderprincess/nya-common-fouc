@@ -119,7 +119,7 @@ Player* GetPlayer(int id) {
 	if (!host) return nullptr;
 	auto players = host->aPlayers;
 	if (!players) return nullptr;
-	if (id > host->GetNumPlayers()) return nullptr;
+	if (id >= host->GetNumPlayers()) return nullptr;
 	auto ply = players[id];
 	if (!ply || !ply->pCar) return nullptr;
 	return ply;
