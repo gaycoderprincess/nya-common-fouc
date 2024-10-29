@@ -13,7 +13,8 @@ public:
 	uint8_t _2AC[0x18];
 	uint32_t nPlayerId; // +2C4
 	uint32_t nPlayerType; // +2C8
-	uint8_t _2CC[0xC];
+	uint32_t nPlayerStartPosition; // +2CC
+	uint8_t _2D0[0x8];
 	uint32_t nIsWrecked; // +2D8
 	uint8_t _2DC[0x30];
 	int32_t nRaceTime; // +30C

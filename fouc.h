@@ -64,3 +64,7 @@ auto BFSManager_DoesFileExist = (bool(__stdcall*)(void*, const char*, int*))0x5B
 
 auto& pGameFilesChecksum1 = *(uint8_t**)0x825520; // uint8_t[20]
 auto& pGameFilesChecksum2 = *(uint8_t**)0x82551C; // uint8_t[41]
+
+auto& gGameRegion = *(int*)0x849314;
+
+auto UpdateMusicVolume = (void(*)())0x41D340;
