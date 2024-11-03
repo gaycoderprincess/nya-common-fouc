@@ -1,7 +1,7 @@
 class PlayerHost {
 public:
 	uint8_t _0[0x14];
-	FO2Vector<Player> aPlayers;
+	FO2Vector<Player*> aPlayers;
 
 	int GetNumPlayers() {
 		return aPlayers.GetSize();
@@ -94,6 +94,6 @@ Player* GetPlayer(int id) {
 	auto host = pGameFlow->pHost;
 	if (!host) return nullptr;
 	auto ply = host->aPlayers.Get(id);
-	if (!ply || !ply->pCar) return nullptr;
-	return ply;
+	if (!ply || !(*ply)->pCar) return nullptr;
+	return *ply;
 }
