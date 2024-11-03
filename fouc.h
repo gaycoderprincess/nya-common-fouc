@@ -1,14 +1,16 @@
 #include "scriptenums.h"
 #include "languages.h"
 #include "fo2math.h"
+#include "types/FO2String.h"
+#include "types/FO2Vector.h"
 #include "types/GameController.h"
 #include "types/LiteDb.h"
 #include "types/Car.h"
 #include "types/ScoreManager.h"
 #include "types/PlayerProfile.h"
+#include "types/Player.h"
 #include "types/GameFlow.h"
 #include "types/EventManager.h"
-#include "types/Player.h"
 #include "types/Garage.h"
 #include "types/CameraManager.h"
 #include "types/GameSettings.h"
@@ -22,6 +24,7 @@
 #include "types/Environment.h"
 #include "types/DynamicObject.h"
 #include "types/Track.h"
+#include "types/MusicInterface.h"
 #include "fo2helpers.h"
 #include "fo2hooks.h"
 
@@ -66,5 +69,3 @@ auto& pGameFilesChecksum1 = *(uint8_t**)0x825520; // uint8_t[20]
 auto& pGameFilesChecksum2 = *(uint8_t**)0x82551C; // uint8_t[41]
 
 auto& gGameRegion = *(int*)0x849314;
-
-auto UpdateMusicVolume = (void(*)())0x41D340;

@@ -1,11 +1,10 @@
 class PlayerHost {
 public:
 	uint8_t _0[0x14];
-	Player** aPlayers;
-	Player** aPlayersEnd;
+	FO2Vector<Player> aPlayers;
 
 	int GetNumPlayers() {
-		return aPlayersEnd - aPlayers;
+		return aPlayers.GetSize();
 	}
 };
 
@@ -90,3 +89,11 @@ public:
 	}
 };
 auto& pGameFlow = *(GameFlow**)0x9298FAC;
+
+Player* GetPlayer(int id) {
+	auto host = pGameFlow->pHost;
+	if (!host) return nullptr;
+	auto ply = host->aPlayers.Get(id);
+	if (!ply || !ply->pCar) return nullptr;
+	return ply;
+}

@@ -1,3 +1,5 @@
+struct tEventData;
+
 class Player {
 public:
 	uint8_t _4[0x220];
@@ -113,14 +115,3 @@ public:
 	uint8_t _40[0x10]; // +40
 };
 static_assert(sizeof(PlayerInfo) == 0x50);
-
-Player* GetPlayer(int id) {
-	auto host = pGameFlow->pHost;
-	if (!host) return nullptr;
-	auto players = host->aPlayers;
-	if (!players) return nullptr;
-	if (id >= host->GetNumPlayers()) return nullptr;
-	auto ply = players[id];
-	if (!ply || !ply->pCar) return nullptr;
-	return ply;
-}
