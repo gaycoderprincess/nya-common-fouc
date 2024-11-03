@@ -6,14 +6,13 @@ public:
 	T* end = nullptr;
 	T* capacity = nullptr;
 
-	auto GetSize() {
+	T operator[] (int i) const { return begin[i]; }
+	T& operator[] (int i) { return begin[i]; }
+
+	auto GetSize() const {
 		return end - begin;
 	}
-	auto GetCapacity() {
+	auto GetCapacity() const {
 		return capacity - begin;
-	}
-	T* Get(int id) {
-		if (id < 0 || id >= GetSize()) return nullptr;
-		return &begin[id];
 	}
 };

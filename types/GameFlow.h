@@ -93,7 +93,8 @@ auto& pGameFlow = *(GameFlow**)0x9298FAC;
 Player* GetPlayer(int id) {
 	auto host = pGameFlow->pHost;
 	if (!host) return nullptr;
-	auto ply = host->aPlayers.Get(id);
-	if (!ply || !(*ply)->pCar) return nullptr;
-	return *ply;
+	if (id < 0 || id >= host->aPlayers.GetSize()) return nullptr;
+	auto ply = host->aPlayers[id];
+	if (!ply || !ply->pCar) return nullptr;
+	return ply;
 }
