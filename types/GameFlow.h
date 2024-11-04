@@ -60,7 +60,9 @@ public:
 	uint32_t nRaceState; // +2738
 	uint8_t _273C[0xE4];
 	PlayerHost* pHost; // +2820
-	uint8_t _2824[0x62C];
+	uint8_t _2824[0xC];
+	MenuInterface* pMenuInterface; // +2830
+	uint8_t _2834[0x61C];
 	PlayerProfile Profile; // +2E50
 
 	static inline auto& fArcadeRewardWhammo = *(float*)0x765080;
