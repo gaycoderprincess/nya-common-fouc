@@ -70,3 +70,29 @@ auto& pGameFilesChecksum1 = *(uint8_t**)0x825520; // uint8_t[20]
 auto& pGameFilesChecksum2 = *(uint8_t**)0x82551C; // uint8_t[41]
 
 auto& gGameRegion = *(int*)0x849314;
+
+struct tLineOfSightIn {
+	float fMaxDistance = 100.0;
+	float* fUnk4 = nullptr;
+	uint8_t nUnk8 = 0;
+	uint8_t nUnk9 = 1;
+	uint8_t nUnkA = 0;
+	uint8_t nUnkB = 1;
+	uint8_t nUnkC = 0;
+
+	tLineOfSightIn() {
+		if (auto env = pEnvironment) {
+			fUnk4 = &env->fUnkForLOS;
+		}
+	}
+};
+
+struct tLineOfSightOut {
+	float fHitDistance;
+	float fUnk4;
+	float fUnk8;
+	uint32_t nSurfaceId; // surfaces.bed ID - 1
+	NyaVec3 vHitNormal;
+	NyaVec3 vUnk[3];
+};
+auto CheckLineOfSight = (bool(__stdcall*)(tLineOfSightIn* prop, void* pUnkFromPlayerHost, NyaVec3* start, NyaVec3* dir, tLineOfSightOut* out))0x5CB8E0;

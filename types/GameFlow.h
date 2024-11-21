@@ -1,7 +1,9 @@
 class PlayerHost {
 public:
 	uint8_t _0[0x14];
-	FO2Vector<Player*> aPlayers;
+	FO2Vector<Player*> aPlayers; // +14
+	uint8_t _20[0xF798];
+	void* pUnkForLOS; // +F7B8
 
 	int GetNumPlayers() {
 		return aPlayers.GetSize();
