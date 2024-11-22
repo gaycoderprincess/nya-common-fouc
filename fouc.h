@@ -74,11 +74,11 @@ auto& gGameRegion = *(int*)0x849314;
 struct tLineOfSightIn {
 	float fMaxDistance = 100.0;
 	float* fUnk4 = nullptr;
-	uint8_t nUnk8 = 0;
-	uint8_t nUnk9 = 1;
-	uint8_t nUnkA = 0;
-	uint8_t nUnkB = 1;
-	uint8_t nUnkC = 0;
+	bool bGetClosestHit = false; // returns first match if false
+	bool bIgnoreBackfaces = true;
+	bool bSave4and8 = false;
+	bool bSaveHitNormal = true;
+	bool bSaveLast3Vectors = false;
 
 	tLineOfSightIn() {
 		if (auto env = pEnvironment) {
