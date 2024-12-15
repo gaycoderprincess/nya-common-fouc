@@ -1,3 +1,5 @@
+#include <codecvt>
+
 class Font {
 public:
 	uint8_t _0[0xC];
