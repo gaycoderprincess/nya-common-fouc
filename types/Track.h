@@ -14,7 +14,7 @@ public:
 	};
 
 	uint8_t _0[0x28D8];
-	uint32_t nNumSplitpoints;
+	uint32_t nNumSplitpoints; // +28D8
 	tSplitpoint aSplitpoints[32]; // +28DC
 	uint8_t _30DC[0x804];
 	tStartpoint aStartpoints[32]; // +38E0

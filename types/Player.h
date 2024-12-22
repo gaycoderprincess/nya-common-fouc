@@ -22,7 +22,8 @@ public:
 	int32_t nRaceTime; // +30C
 	uint8_t _310[0xD4];
 	uint32_t nCurrentSplit; // +3E4
-	uint8_t _3E8[0x58];
+	uint32_t nCurrentLap; // +3E8
+	uint8_t _3EC[0x54];
 	uint32_t nGhosting; // +440
 	uint8_t _444[0x78];
 	uint32_t nTimeInAir; // +4BC
