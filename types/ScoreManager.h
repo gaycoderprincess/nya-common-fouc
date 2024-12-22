@@ -58,7 +58,8 @@ public:
 
 class ScoreManager {
 public:
-	uint8_t _0[0x8];
+	uint8_t _0[0x4];
+	uint32_t nNumLaps; // +4
 	void** pScoresStart; // +8
 	void** pScoresEnd; // +C
 	uint8_t _10[0x34];
