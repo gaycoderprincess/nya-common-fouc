@@ -4,11 +4,14 @@ public:
 	FO2Vector<Player*> aPlayers; // +14
 	uint8_t _20[0xF798];
 	void* pUnkForLOS; // +F7B8
+	uint8_t _F7BC[0x111E0];
+	uint32_t nRaceTime; // +2099C
 
 	int GetNumPlayers() {
 		return aPlayers.GetSize();
 	}
 };
+auto& pPlayerHost = *(PlayerHost**)0x715E68;
 
 enum eGameState {
 	GAME_STATE_NONE,
