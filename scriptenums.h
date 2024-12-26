@@ -238,6 +238,7 @@ enum eGameRules {
 
 	// chloe collection gamerules
 	GR_TONYHAWK = 12,
+	GR_SPEEDTRAP = 13,
 };
 
 enum eStuntType {

@@ -48,7 +48,9 @@ public:
 	int nGameRulesIngame; // +514
 	int nStuntType; // +518
 	int nDerbyType; // +51C
-	uint8_t _520[0xFCC];
+	uint8_t _520[0x5C8];
+	PlayerInfo aPlayerInfos[32]; // +AE8
+	uint8_t _14E8[0x4];
 	uint32_t NumUnlockCar; // +14EC
 	uint32_t UnlockCar[16]; // +14F0
 	uint8_t _1530[0x1108];

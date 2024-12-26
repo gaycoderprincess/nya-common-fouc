@@ -15,6 +15,7 @@ enum eGameEvent {
 	EVENT_PLAYER_ON_OTHERPLAYER_WRECKED = 6023,
 	EVENT_PLAYER_ON_SPLIT = 6026,
 	EVENT_PLAYER_ON_LAP = 6027,
+	EVENT_PLAYER_ON_ARCADE_CHECKPOINT = 6029,
 	EVENT_PLAYER_ON_FINISH = 6031,
 	EVENT_PLAYER_WRECKED = 6032,
 	EVENT_PLAYER_DERBY_TIMEOUT = 6033,
@@ -46,6 +47,9 @@ struct tEventData {
 
 class EventManager {
 public:
+	// 4612C0
+	static inline auto AddHandler = (void(__fastcall*)(int unk1, EventManager*, void(*pFunction)(tEventData*, void*), int unkFlags, void* funcParam2))0x4612C0;
+
 	static inline uintptr_t PostEvent_call = 0x4611D0;
 	float __attribute__((naked)) __fastcall PostEvent(tEventData* data) {
 		__asm__ (

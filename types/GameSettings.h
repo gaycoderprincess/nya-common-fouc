@@ -16,3 +16,6 @@ struct tGameSetting {
 auto& aGameSettings = *(tGameSetting**)0x45882C;
 
 auto SetDefaultOptions = (void(*)())0x458A80;
+
+auto& bImperialUnits = *(int*)0x849494;
+auto& bIngameMap = *(int*)0x84949C;
