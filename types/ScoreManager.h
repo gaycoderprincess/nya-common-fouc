@@ -61,9 +61,8 @@ class ScoreManager {
 public:
 	uint8_t _0[0x4];
 	uint32_t nNumLaps; // +4
-	void** pScoresStart; // +8
-	void** pScoresEnd; // +C
-	uint8_t _10[0x34];
+	FO2Vector<PlayerScoreRace*> aScores;
+	uint8_t _14[0x30];
 	uint32_t nSurvivorId; // +44
 };
 auto& pScoreManager = *(ScoreManager**)0x846514;
@@ -72,13 +71,11 @@ template<typename T>
 T* GetPlayerScore(int playerId) {
 	if (!pScoreManager) return nullptr;
 
-	auto score = (T**)pScoreManager->pScoresStart;
-	auto end = (T**)pScoreManager->pScoresEnd;
-	while (score < end) {
-		if ((*score)->nPlayerId + 1 == playerId) {
-			return *score;
+	for (int i = 0; i < pScoreManager->aScores.GetSize(); i++) {
+		auto score = pScoreManager->aScores[i];
+		if (score->nPlayerId + 1 == playerId) {
+			return (T*)score;
 		}
-		score++;
 	}
 	return nullptr;
 }

@@ -27,7 +27,9 @@ public:
 	uint32_t nGhosting; // +440
 	uint8_t _444[0x78];
 	uint32_t nTimeInAir; // +4BC
-	uint8_t _4C0[0x3E0];
+	uint8_t _4C0[0x3AC];
+	uint32_t nNitroRegen; // +86C
+	uint8_t _870[0x30];
 	uint32_t nSteeringKeyboardLeft; // +8A0
 	uint32_t nSteeringKeyboardRight; // +8A4
 	uint8_t _8A8[0x14];

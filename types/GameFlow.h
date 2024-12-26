@@ -29,22 +29,39 @@ enum eRaceState {
 
 class GameFlow {
 public:
+	struct tPreRace {
+		int nMode; // +4B0
+		int nRules; // +4B4
+		int nDerbyType; // +4B8
+		int nClass; // +4BC
+		int nCup; // +4C0
+		int nEvent; // +4C4
+		int nCupChoice; // +4C8
+		int nLevel; // +4CC
+		int nWeather; // +4D0
+		int nLaps; // +4D4
+		int nCar; // +4D8
+		int nCarSkin; // +4DC
+		int nNumPlayers; // +4E0
+		int nNumHunters; // +4E4
+		int nUploadResults; // +4E8
+		int nMenuData; // +4EC
+		int nMenuData2; // +4F0
+		int nUpgradeLevel; // +4F4
+		int nNitroMultiplier; // +4F8
+		int nDamageMultiplier; // +4FC
+		uint8_t _500[0x4];
+		int nWrongWayGhost; // +504
+		int nNitroRegenType; // +508
+		int nHandlingDamage; // +50C
+		int nReversed; // +510
+	};
+	static_assert(sizeof(tPreRace) == 0x514-0x4B0);
+
 	uint8_t _0[0x4A4];
 	int nGameState;
 	uint8_t _4A8[0x8];
-	int nGameMode; // +4B0
-	int nGameRules; // +4B4
-	uint8_t _4B8[0x4];
-	int nAIClass; // +4BC
-	uint8_t _4C0[0xC];
-	int nLevelId; // +4CC
-	uint8_t _4D0[0x4];
-	int nNumLaps; // +4D4
-	int nInstantActionCar; // +4D8
-	int nInstantActionCarSkin; // +4DC
-	uint8_t _4E0[0x18];
-	float fNitroMultiplier; // +4F8
-	uint8_t _4FC[0x18];
+	tPreRace PreRace; // +4B0
 	int nGameRulesIngame; // +514
 	int nStuntType; // +518
 	int nDerbyType; // +51C
