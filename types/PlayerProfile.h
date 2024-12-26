@@ -21,4 +21,6 @@ public:
 	wchar_t sPlayerName[16]; // +1270
 	uint8_t _1290[0x2A];
 	uint8_t nActiveCar; // +12BA
+	uint8_t _12BB[0x3];
+	uint8_t aCupPoints[12]; // +12BE
 };

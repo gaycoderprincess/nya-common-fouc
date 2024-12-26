@@ -2,7 +2,8 @@ class PlayerScoreRace {
 public:
 	uint8_t _0[0x4];
 	uint32_t nPlayerId; // 4
-	uint8_t _8[0x34];
+	uint32_t nPosition; // 8
+	uint8_t _C[0x30];
 	float fProgress; // 3C
 	uint8_t _40[0x4];
 	uint32_t nCurrentLap; // 44
@@ -49,7 +50,7 @@ class PlayerScoreArcadeRace {
 public:
 	uint8_t _0[0x4];
 	uint32_t nPlayerId; // +4
-	uint32_t nUnknownScoringRelated; // +8
+	uint32_t nPosition; // +8
 	uint8_t _C[0x74];
 	int32_t nTimeLeft; // 80
 	uint8_t _84[0xC];

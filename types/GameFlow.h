@@ -48,7 +48,9 @@ public:
 	int nGameRulesIngame; // +514
 	int nStuntType; // +518
 	int nDerbyType; // +51C
-	uint8_t _520[0x5C8];
+	uint8_t _520[0x14];
+	uint32_t nPlayerIdByPosition[32]; // +534
+	uint8_t _5B4[0x534];
 	PlayerInfo aPlayerInfos[32]; // +AE8
 	uint8_t _14E8[0x4];
 	uint32_t NumUnlockCar; // +14EC
@@ -83,7 +85,7 @@ public:
 	static inline auto& fFragDerbyBombMaxDistance = *(float*)0x76510C;
 
 	static inline uintptr_t AddArcadeRaceScore_call = 0x46F300;
-	static void __attribute__((naked)) __fastcall AddArcadeRaceScore(const wchar_t* name, int category, GameFlow* game, float score, int unknown) {
+	static void __attribute__((naked)) __fastcall AddArcadeRaceScore(const wchar_t* name, int category, GameFlow* game, float score, int position) {
 		__asm__ (
 			"mov eax, ecx\n\t"
 			"mov ecx, edx\n\t"

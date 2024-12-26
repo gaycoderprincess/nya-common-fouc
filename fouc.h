@@ -26,6 +26,7 @@
 #include "types/DynamicObject.h"
 #include "types/Track.h"
 #include "types/MusicInterface.h"
+#include "types/CupManager.h"
 #include "fo2helpers.h"
 #include "fo2hooks.h"
 
