@@ -48,9 +48,9 @@ public:
 		int nMenuData; // +4EC
 		int nMenuData2; // +4F0
 		int nUpgradeLevel; // +4F4
-		int nNitroMultiplier; // +4F8
-		int nDamageMultiplier; // +4FC
-		uint8_t _500[0x4];
+		float fNitroMultiplier; // +4F8
+		float fDamageMultiplier; // +4FC
+		float fScoreMultiplier; // +500 for arcade stunts
 		int nWrongWayGhost; // +504
 		int nNitroRegenType; // +508
 		int nHandlingDamage; // +50C

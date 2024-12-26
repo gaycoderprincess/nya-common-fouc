@@ -93,7 +93,17 @@ struct tLineOfSightOut {
 	float fUnk4;
 	float fUnk8;
 	uint32_t nSurfaceId; // surfaces.bed ID - 1
+#ifdef NYA_MATH_H
 	NyaVec3 vHitNormal;
 	NyaVec3 vUnk[3];
+#else
+	float vHitNormal[3];
+	float vUnk[3][3];
+#endif
 };
+
+#ifdef NYA_MATH_H
 auto CheckLineOfSight = (bool(__stdcall*)(tLineOfSightIn* prop, void* pUnkFromPlayerHost, NyaVec3* start, NyaVec3* dir, tLineOfSightOut* out))0x5CB8E0;
+#else
+auto CheckLineOfSight = (bool(__stdcall*)(tLineOfSightIn* prop, void* pUnkFromPlayerHost, float* start, float* dir, tLineOfSightOut* out))0x5CB8E0;
+#endif
