@@ -47,7 +47,7 @@ public:
 		int nUploadResults; // +4E8
 		int nMenuData; // +4EC
 		int nMenuData2; // +4F0
-		int nUpgradeLevel; // +4F4
+		float fUpgradeLevel; // +4F4
 		float fNitroMultiplier; // +4F8
 		float fDamageMultiplier; // +4FC
 		float fScoreMultiplier; // +500 for arcade stunts
@@ -58,6 +58,88 @@ public:
 	};
 	static_assert(sizeof(tPreRace) == 0x514-0x4B0);
 
+	struct tPostRace {
+		int nResult; // +530
+		uint32_t nPlayerPosition[32]; // +534
+		uint32_t nPlayerVisualPosition[32]; // +5B4
+		uint32_t nRacePoints[32]; // +634
+		uint32_t nFinishTime[32]; // +6B4
+		uint32_t nFastestLapTime[32]; // +734
+		uint32_t nArcadeScore[32]; // +7B4
+		uint32_t nArcadeAward; // +834
+		uint32_t nHighScorePos; // +838
+		uint32_t nPreviousHighScore; // +83C
+		uint32_t nBestWreckerId; // +840
+		uint32_t nBlastMasterId; // +844
+		uint32_t nFastestLapId; // +848
+		uint32_t nDareDevilId; // +84C
+		uint32_t nFragDerbyStreakerId; // +850
+		uint32_t nFragDerbyStreakerCount; // +854
+		uint32_t nFragDerbyVictimId; // +858
+		uint32_t nFragDerbyVictimCount; // +85C
+		uint32_t nFragDerbySurvivorId; // +860
+		uint32_t nFragDerbySurvivorCount; // +864
+		uint32_t nDerbyDamagePoints[32]; // +868
+		uint32_t nDerbyWreckPoints[32]; // +8E8
+		uint32_t nDerbyRankPoints[32]; // +968
+		uint32_t nDerbyKills[32]; // +9E8
+		uint32_t nStuntFinalScore[32]; // +A68
+	};
+	static_assert(sizeof(tPostRace) == 0xAE8-0x530);
+
+	struct tAwards {
+		int nAwardCar; // +14E8
+		int nNumUnlockCar; // +14E8
+		int aUnlockCar[256]; // +14F0
+		int nNumUnlockSingleRace; // +18F0
+		int aUnlockSingleRace[256]; // +18F4
+		int NumUnlockArcadeRace; // +1CF4
+		int aUnlockArcadeRaceClass[256]; // +1CF8
+		int aUnlockArcadeRaceEvent[256]; // +20F8
+		int nUnlockClass; // +24F8
+		int nUnlockSubClass; // +24FC
+		int nUnlockEvent; // +2500
+		int nUnlockProfile; // +2504
+		int nUnlockFinals; // +2508
+		int nFinalCompleted; // +250C
+		int nOMGGameCompletedGratzDING; // +2510
+		int nArcadeCareerCompleted; // +2514
+		int nArcadeCarCrashes; // +2518
+		int nArcadeSceneryCrashes; // +251C
+		int nArcadeAirtime; // +2520
+		int nArcadePlaceBonus; // +2524
+		int nArcadeTimeBonus; // +2528
+		int nRaceWinnings; // +252C
+		uint8_t _2530[0x7C];
+		int nCupWinnings; // +25AC
+		uint8_t _25B0[0x7C];
+		int nClassWinnings; // +262C
+		int nSubClassWinnings; // +2630
+		int nCrashWinnings; // +2634
+		int nArcadeGoalScores[3]; // +2638
+		uint8_t _2644[0x78];
+		int nSuperFlip; // +26BC
+		int nWhammo; // +26C0
+		int nPowerHit; // +26C4
+		int nBlastOut; // +26C8
+		int nWrecked; // +26CC
+		int nRagdolled; // +26D0
+		int nBigAir; // +26D4
+		int nNumSuperFlip; // +26D8
+		int nNumWhammo; // +26DC
+		int nNumPowerHit; // +26E0
+		int nNumBlastOut; // +26E4
+		int nNumWrecked; // +26E8
+		int nNumRagdolled; // +26EC
+		int nNumBigAir; // +26F0
+		int nBestWrecker; // +26F4
+		int nBlastMaster; // +26F8
+		int nFastestLap; // +26FC
+		int nDareDevil; // +2700
+		int nTotalCashAwarded; // +2704
+	};
+	static_assert(sizeof(tAwards) == 0x2708-0x14E8);
+
 	uint8_t _0[0x4A4];
 	int nGameState;
 	uint8_t _4A8[0x8];
@@ -65,24 +147,11 @@ public:
 	int nGameRulesIngame; // +514
 	int nStuntType; // +518
 	int nDerbyType; // +51C
-	uint8_t _520[0x14];
-	uint32_t nPlayerIdByPosition[32]; // +534
-	uint8_t _5B4[0x534];
+	uint8_t _520[0x10];
+	tPostRace PostRace; // +530
 	PlayerInfo aPlayerInfos[32]; // +AE8
-	uint8_t _14E8[0x4];
-	uint32_t NumUnlockCar; // +14EC
-	uint32_t UnlockCar[16]; // +14F0
-	uint8_t _1530[0x1108];
-	uint32_t nArcadeTargets[3]; // +2638
-	uint8_t _2644[0x78];
-	uint32_t nArcadeRewardSuperFlip; // +26BC
-	uint32_t nArcadeRewardWhammo; // +26C0
-	uint32_t nArcadeRewardPowerHit; // +26C4
-	uint32_t nArcadeRewardBlastOut; // +26C8
-	uint32_t nArcadeRewardWrecked; // +26CC
-	uint32_t nArcadeRewardRagdolled; // +26D0
-	uint32_t nArcadeRewardBigAir; // +26D4
-	uint8_t _26D8[0x60];
+	tAwards Awards; // +14E8
+	uint8_t _2708[0x30];
 	uint32_t nRaceState; // +2738
 	uint8_t _273C[0xE4];
 	PlayerHost* pHost; // +2820
