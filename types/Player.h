@@ -5,7 +5,9 @@ public:
 	uint8_t _4[0x220];
 	uint32_t nArrowColor; // +224
 	uint32_t nArrowColorId; // +228
-	uint8_t _22C[0x68];
+	uint8_t _22C[0x58];
+	Controller* pController; // +284
+	uint8_t _288[0xC];
 	Car* pCar; // +294
 	uint32_t nCarId; // +298
 	uint32_t nCarSkinId; // +29C

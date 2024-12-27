@@ -144,7 +144,7 @@ public:
 	int nGameState;
 	uint8_t _4A8[0x8];
 	tPreRace PreRace; // +4B0
-	int nGameRulesIngame; // +514
+	int nGameRules; // +514
 	int nStuntType; // +518
 	int nDerbyType; // +51C
 	uint8_t _520[0x10];

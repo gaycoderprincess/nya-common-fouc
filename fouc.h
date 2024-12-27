@@ -8,6 +8,7 @@
 #include "types/Car.h"
 #include "types/ScoreManager.h"
 #include "types/PlayerProfile.h"
+#include "types/Controller.h"
 #include "types/Player.h"
 #include "types/CameraManager.h"
 #include "types/MenuInterface.h"
