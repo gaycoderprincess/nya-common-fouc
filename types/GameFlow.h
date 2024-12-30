@@ -109,10 +109,8 @@ public:
 		int nArcadeAirtime; // +2520
 		int nArcadePlaceBonus; // +2524
 		int nArcadeTimeBonus; // +2528
-		int nRaceWinnings; // +252C
-		uint8_t _2530[0x7C];
-		int nCupWinnings; // +25AC
-		uint8_t _25B0[0x7C];
+		int nRaceWinnings[32]; // +252C
+		int nCupWinnings[32]; // +25AC
 		int nClassWinnings; // +262C
 		int nSubClassWinnings; // +2630
 		int nCrashWinnings; // +2634

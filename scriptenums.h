@@ -240,6 +240,7 @@ enum eGameRules {
 	GR_TONYHAWK = 12,
 	GR_SPEEDTRAP = 13,
 	GR_DRIFT = 14,
+	GR_LAPKNOCKOUT = 15,
 };
 
 enum eStuntType {
