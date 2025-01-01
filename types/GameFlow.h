@@ -145,7 +145,9 @@ public:
 	int nGameRules; // +514
 	int nStuntType; // +518
 	int nDerbyType; // +51C
-	uint8_t _520[0x10];
+	int nStuntStartPosition; // +520
+	int nNitroRegen; // +524
+	uint8_t _528[0x8];
 	tPostRace PostRace; // +530
 	PlayerInfo aPlayerInfos[32]; // +AE8
 	tAwards Awards; // +14E8
