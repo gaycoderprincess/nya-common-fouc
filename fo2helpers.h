@@ -72,7 +72,7 @@ int GetNumTracks() {
 
 bool DoesTrackValueExist(int id, const char* name) {
 	if (!DoesTrackExist(id)) return false;
-	
+
 	auto lua = pScriptHost->pLUAStruct->pLUAContext;
 	auto oldtop = lua_gettop(lua);
 

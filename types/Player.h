@@ -17,7 +17,7 @@ public:
 	uint8_t _2AC[0x18];
 	uint32_t nPlayerId; // +2C4
 	uint32_t nPlayerType; // +2C8
-	uint32_t nPlayerStartPosition; // +2CC
+	uint32_t nStartPosition; // +2CC
 	uint8_t _2D0[0x8];
 	uint32_t nIsWrecked; // +2D8
 	uint8_t _2DC[0x30];
@@ -27,7 +27,9 @@ public:
 	uint32_t nCurrentLap; // +3E8
 	uint8_t _3EC[0x54];
 	uint32_t nGhosting; // +440
-	uint8_t _444[0x78];
+	uint8_t _444[0x10];
+	uint32_t nWrongWayGhost; // +454
+	uint8_t _458[0x64];
 	uint32_t nTimeInAir; // +4BC
 	uint8_t _4C0[0x3AC];
 	uint32_t nNitroRegen; // +86C
@@ -52,8 +54,10 @@ public:
 	float fLookAheadMax; // +9E0
 	float fLookAheadModifier; // +9E4
 	uint8_t _9E8[0x68];
-	int nAIId; // +A50
-	int nAIClassId; // +A54
+	uint32_t nAIId; // +A50
+	uint32_t nAIClassId; // +A54
+	uint8_t _A58[0x4];
+	uint32_t nIsDerbyAI; // +A5C
 
 	static inline uintptr_t DrawJoinedGameNotification_call = 0x4E1B00;
 	void __attribute__((naked)) __fastcall DrawJoinedGameNotification(const wchar_t* string) {
