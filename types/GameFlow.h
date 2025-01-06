@@ -154,7 +154,9 @@ public:
 	tAwards Awards; // +14E8
 	uint8_t _2708[0x30];
 	uint32_t nRaceState; // +2738
-	uint8_t _273C[0x20];
+	uint8_t _273C[0x18];
+	uint32_t nIsPauseMenuUp; // +2754
+	uint8_t _2758[0x4];
 	uint32_t nIsInReplay; // +275C
 	uint8_t _2760[0xC0];
 	PlayerHost* pHost; // +2820
