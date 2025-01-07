@@ -47,17 +47,8 @@ public:
 	uint32_t nSomeFlags; // +8E4
 	uint8_t _8E8[0x18];
 	float fTimeInAirForBonus; // +900
-	uint8_t _904[0x68];
-	uint32_t nAICarNum; // +96C
-	uint8_t _970[0x6C];
-	float fLookAheadMin; // +9DC
-	float fLookAheadMax; // +9E0
-	float fLookAheadModifier; // +9E4
-	uint8_t _9E8[0x68];
-	uint32_t nAIId; // +A50
-	uint32_t nAIClassId; // +A54
-	uint8_t _A58[0x4];
-	uint32_t nIsDerbyAI; // +A5C
+	uint8_t _904[0x38];
+	// size 0x93C
 
 	static inline uintptr_t DrawJoinedGameNotification_call = 0x4E1B00;
 	void __attribute__((naked)) __fastcall DrawJoinedGameNotification(const wchar_t* string) {
@@ -110,6 +101,77 @@ public:
 	virtual void _vf16() = 0;
 	virtual void _vf17() = 0;
 	virtual void TriggerEvent(tEventData* properties) = 0;
+};
+
+class AIPlayer : public Player {
+public:
+	struct tAIProfile {
+		int nCarNum; // +96C
+		int nSkin; // +970
+		int nCharacterType; // +974
+		int nCharacterSkinId; // +978
+		float fCatchUpMul; // +97C
+		float fHandicapMul; // +980
+		float fMagnetSpeedLimit; // +984
+		float fMagnetDistanceLimitAhead; // +988
+		float fMagnetDistanceLimitBehind; // +98C
+		float fMagnetSpeedRatio; // +990
+		float fRLMagnetSpeedLimit; // +994
+		float fRLMagnetMul; // +998
+		float fAggression; // +99C
+		float fBumpAggression; // +9A0
+		float fBlockAggression; // +9A4
+		float fOvertakeAggression; // +9A8
+		float fThrottleLimit; // +9AC
+		float fHandicapRacing; // +9B0
+		float fHandicapOffTrack; // +9B4
+		float fHandicapAirborne; // +9B8
+		float fCatchUpRacing; // +9BC
+		float fCatchUpOffTrack; // +9C0
+		float fCatchUpAirborne; // +9C4
+		float fNitroUsage; // +9C8
+		int fNitroScan; // +9CC
+		float fAvoidance; // +9D0
+		float fDamageReaction; // +9D4
+		float fDamageRecovery; // +9D8
+		float fLookAheadMin; // +9DC
+		float fLookAheadMax; // +9E0
+		float fLookAheadModifier; // +9E4
+		float fUseAltRoute; // +9E8
+		float fUnderSteerRange; // +9EC
+		float fOverSteerRange; // +9F0
+		float fSpinOutRange; // +9F4
+		float fNeutralSlide; // +9F8
+		float fNeutralBrakeTime; // +9FC
+		float fMinBrakeTime; // +A00
+		float fMaxBrakeTime; // +A04
+		float fSlideFrictionScale; // +A08
+		float fBrakeFrictionScale; // +A0C
+		float fFrictionAdjust; // +A10
+		float fHandicapAhead; // +A14
+		float fHandicapBehind; // +A18
+		float fCoefP; // +A1C
+		float fCoefI; // +A20
+		float fCoefD; // +A24
+		float fDerbyFavourCenter; // +A28
+		float fDerbyTargetPlayer; // +A2C
+		float fDerbyExitCruiseSpeed; // +A30
+		float fDefaultTurbo; // +A34
+		float fPackCoeff; // +A38
+		float fTimeCoeff; // +A3C
+		float fSteeringMul; // +A40
+		float fPowerUpDirMin; // +A44
+		float fPowerUpDistMax; // +A48 gets squared after it's read from db
+		float fBumpMassDriver; // +A4C
+	};
+	static_assert(sizeof(tAIProfile) == 0xA50-0x96C);
+
+	uint8_t _93C[0x30];
+	tAIProfile AIProfile; // +96C
+	uint32_t nAIId; // +A50
+	uint32_t nAIClassId; // +A54
+	uint8_t _A58[0x4];
+	uint32_t nIsDerbyAI; // +A5C
 };
 
 class PlayerInfo {
