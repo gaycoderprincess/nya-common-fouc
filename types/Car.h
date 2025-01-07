@@ -33,8 +33,10 @@ public:
 	uint8_t _29C[0x4];
 	float vAngVelocity[3]; // +2A0
 	uint8_t _2AC[0x4];
-	float vVelocityGravity[3]; // +2B0
-	uint8_t _2BC[0x330];
+	float vImpulse[3]; // +2B0
+	uint8_t _2BC[0x4];
+	float vAngImpulse[3]; // +2C0
+	uint8_t _2CC[0x320];
 	float fNitro; // +5EC
 	uint8_t _5F0[0x440];
 	Tire aTires[4]; // +A30
@@ -69,8 +71,11 @@ public:
 	inline NyaVec3* GetAngVelocity() {
 		return (NyaVec3*)vAngVelocity;
 	}
-	inline NyaVec3* GetVelocityGravity() {
-		return (NyaVec3*)vVelocityGravity;
+	inline NyaVec3* GetImpulse() {
+		return (NyaVec3*)vImpulse;
+	}
+	inline NyaVec3* GetAngImpulse() {
+		return (NyaVec3*)vAngImpulse;
 	}
 #endif
 

@@ -130,7 +130,7 @@ public:
 		float fCatchUpOffTrack; // +9C0
 		float fCatchUpAirborne; // +9C4
 		float fNitroUsage; // +9C8
-		int fNitroScan; // +9CC
+		int nNitroScan; // +9CC
 		float fAvoidance; // +9D0
 		float fDamageReaction; // +9D4
 		float fDamageRecovery; // +9D8
