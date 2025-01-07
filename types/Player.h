@@ -33,7 +33,11 @@ public:
 	uint32_t nTimeInAir; // +4BC
 	uint8_t _4C0[0x3AC];
 	uint32_t nNitroRegen; // +86C
-	uint8_t _870[0x30];
+	uint8_t _870[0xC];
+	uint32_t nIsPowerupEnabled; // +87C
+	uint32_t nPowerupType; // +880
+	uint32_t nPowerupTime; // +884
+	uint8_t _888[0x18];
 	uint32_t nSteeringKeyboardLeft; // +8A0
 	uint32_t nSteeringKeyboardRight; // +8A4
 	uint8_t _8A8[0x14];
@@ -81,6 +85,8 @@ public:
 				:  "m" (DrawLeftGameNotification_call)
 		);
 	}
+
+	static inline auto GetBumpMass = (void(__thiscall*)(Player*))0x47DFA0;
 
 	virtual void _vf0() = 0;
 	virtual void _vf1() = 0;

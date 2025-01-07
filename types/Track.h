@@ -25,6 +25,6 @@ public:
 class TrackAI {
 public:
 	uint8_t _0[0x468];
-	Track* pTrack;
+	Track* pTrack; // +468
 };
 auto& pTrackAI = *(TrackAI**)0x9298FA8;

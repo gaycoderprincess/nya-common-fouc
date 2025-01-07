@@ -36,7 +36,10 @@ public:
 	float vImpulse[3]; // +2B0
 	uint8_t _2BC[0x4];
 	float vAngImpulse[3]; // +2C0
-	uint8_t _2CC[0x320];
+	uint8_t _2CC[0x68];
+	float fGlobalMassFudge; // +334
+	float fBumpMassFudge; // +338
+	uint8_t _33C[0x2B0];
 	float fNitro; // +5EC
 	uint8_t _5F0[0x440];
 	Tire aTires[4]; // +A30
