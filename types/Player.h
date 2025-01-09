@@ -22,7 +22,9 @@ public:
 	uint32_t nIsWrecked; // +2D8
 	uint8_t _2DC[0x30];
 	int32_t nRaceTime; // +30C
-	uint8_t _310[0xD4];
+	uint8_t _310[0x4];
+	uint32_t nFrameTime; // +314
+	uint8_t _318[0xCC];
 	uint32_t nCurrentSplit; // +3E4
 	uint32_t nCurrentLap; // +3E8
 	uint8_t _3EC[0x54];
@@ -47,7 +49,9 @@ public:
 	float fOutputSteerAngle; // +8CC
 	float fGasPedal; // +8D0
 	float fBrakePedal; // +8D4
-	uint8_t _8D8[0xC];
+	float fHandbrake; // +8D8
+	float fNitroButton; // +8DC
+	uint8_t _8E0[0x4];
 	uint32_t nSomeFlags; // +8E4
 	uint8_t _8E8[0x18];
 	float fTimeInAirForBonus; // +900

@@ -41,7 +41,8 @@ public:
 	float fBumpMassFudge; // +338
 	uint8_t _33C[0x2B0];
 	float fNitro; // +5EC
-	uint8_t _5F0[0x440];
+	float fMaxNitro; // +5F0
+	uint8_t _5F4[0x43C];
 	Tire aTires[4]; // +A30
 	uint8_t _18F0[0x3D8];
 	uint32_t nIsSkinCharred; // +1CC8
