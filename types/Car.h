@@ -6,7 +6,10 @@ public:
 };
 static_assert(sizeof(Tire) == 0x3B0);
 
+// todo: gear is at 65C overall, part of Gearbox
+
 class Player;
+class DevTexture;
 class Car {
 public:
 	uint8_t _0[0x170];
@@ -56,13 +59,27 @@ public:
 	float fNitroButton; // +1F18
 	float fHandbrake; // +1F1C
 	float fSteerAngle; // +1F20
-	uint8_t _1F24[0x166C];
+	uint8_t _1F24[0x14DC];
+	DevTexture* pShadow; // +3400
+	uint8_t _3404[0x18C];
 	int nIsRagdolled; // +3590
-	uint8_t _3594[0x1108];
+	uint8_t _3594[0xE6C];
+	DevTexture* pSkinBurned; // +4400
+	DevTexture* pTireBurned; // +4404
+	DevTexture* pSkin; // +4408
+	DevTexture* pSkinDamaged; // +440C
+	uint8_t _4410[0x8];
+	DevTexture* pSkinSpecular; // +4418
+	DevTexture* pLightsDamaged; // +441C
+	DevTexture* pLightsGlow; // +4420
+	DevTexture* pLightsGlowLit; // +4424
+	DevTexture* pLightsDamagedGlow; // +4428
+	uint8_t _442C[0x270];
 	Player* pPlayer; // +469C
 	uint8_t _46A0[0x3418];
 	float fDamage; // +7AB8
-	uint8_t _7ABC[0xC];
+	uint8_t _7ABC[0x8];
+	uint32_t nShouldExplode; // +7AC4
 	uint32_t nIsWrecked; // +7AC8
 
 #ifdef NYA_MATH_H

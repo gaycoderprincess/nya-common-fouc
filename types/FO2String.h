@@ -1,4 +1,3 @@
-// size 0x1C
 class FO2String {
 public:
 	uint8_t _0[0x4];
@@ -12,3 +11,4 @@ public:
 		return string;
 	}
 };
+static_assert(sizeof(FO2String) == 0x1C);

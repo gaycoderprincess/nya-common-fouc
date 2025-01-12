@@ -56,7 +56,6 @@ public:
 	uint8_t _8E8[0x18];
 	float fTimeInAirForBonus; // +900
 	uint8_t _904[0x38];
-	// size 0x93C
 
 	static inline uintptr_t DrawJoinedGameNotification_call = 0x4E1B00;
 	void __attribute__((naked)) __fastcall DrawJoinedGameNotification(const wchar_t* string) {
@@ -112,6 +111,7 @@ public:
 	virtual void _vf17() = 0;
 	virtual void TriggerEvent(tEventData* properties) = 0;
 };
+static_assert(sizeof(Player) == 0x93C);
 
 class AIPlayer : public Player {
 public:

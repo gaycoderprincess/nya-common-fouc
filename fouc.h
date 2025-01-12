@@ -23,7 +23,6 @@
 #include "types/HUD.h"
 #include "types/LUA.h"
 #include "types/LoadingScreen.h"
-#include "types/Environment.h"
 #include "types/DynamicObject.h"
 #include "types/Track.h"
 #include "types/MusicInterface.h"
