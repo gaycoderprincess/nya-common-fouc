@@ -1,4 +1,3 @@
-// size 0xC
 template<typename T>
 class FO2Vector {
 public:
@@ -16,3 +15,4 @@ public:
 		return capacity - begin;
 	}
 };
+static_assert(sizeof(FO2Vector<void*>) == 0xC);

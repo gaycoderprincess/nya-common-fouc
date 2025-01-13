@@ -81,7 +81,9 @@ auto& pEnvironment = *(Track**)0x8465F0;
 
 class TrackAI {
 public:
-	uint8_t _0[0x468];
+	uint8_t _0[0x410];
+	uint32_t nNumSplines; // +410
+	uint8_t _414[0x54];
 	Track* pTrack; // +468
 };
 auto& pTrackAI = *(TrackAI**)0x9298FA8;

@@ -1,3 +1,13 @@
+class DevTexture {
+public:
+	uint8_t _0[0x14];
+	void* pSomePtr; // +14
+	uint8_t _18[0x4];
+	FO2String sPath; // +1C
+	uint8_t _38[0x14];
+	PDIRECT3DTEXTURE9 pD3DTexture; // +4C
+};
+
 class DeviceD3d {
 public:
 	uint8_t _0[0x8];

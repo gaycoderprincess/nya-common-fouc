@@ -188,6 +188,8 @@ public:
 		);
 	}
 
+	static inline auto InitializeAI = (void(__stdcall*)(GameFlow* pThis, int count))0x4693F0;
+
 	static GameFlow* GetInstance() {
 		return *(GameFlow**)0x9298FAC;
 	}

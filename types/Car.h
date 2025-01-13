@@ -47,7 +47,9 @@ public:
 	float fMaxNitro; // +5F0
 	uint8_t _5F4[0x43C];
 	Tire aTires[4]; // +A30
-	uint8_t _18F0[0x3D8];
+	uint8_t _18F0[0x3C0];
+	FO2Vector<DevTexture*> aTextureNodes; // +1CB0
+	uint8_t _1CBC[0xC];
 	uint32_t nIsSkinCharred; // +1CC8
 	uint8_t _1CCC[0x74];
 	float fMass; // +1D40

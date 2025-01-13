@@ -1,6 +1,9 @@
+#include <d3d9.h>
+
 #include "scriptenums.h"
 #include "languages.h"
 #include "fo2math.h"
+
 #include "types/FO2String.h"
 #include "types/FO2Vector.h"
 #include "types/GameController.h"
@@ -16,8 +19,8 @@
 #include "types/EventManager.h"
 #include "types/Garage.h"
 #include "types/GameSettings.h"
-#ifndef NYA_COMMON_NO_D3D
 #include "types/DeviceD3d.h"
+#ifndef NYA_COMMON_NO_D3D
 #include "types/Font.h"
 #endif
 #include "types/HUD.h"
@@ -28,6 +31,7 @@
 #include "types/MusicInterface.h"
 #include "types/CupManager.h"
 #include "types/Explosion.h"
+
 #include "fo2helpers.h"
 #include "fo2hooks.h"
 
