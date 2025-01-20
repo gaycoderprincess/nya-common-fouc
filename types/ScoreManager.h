@@ -1,27 +1,17 @@
-class PlayerScoreRace {
+class PlayerScore {
 public:
 	uint32_t nPlayerId; // +4
 	int32_t nPosition; // +8
 	uint8_t _C[0x2C];
-	bool bHasFinished; // +38
-	bool bIsDNF; // +39
-	uint8_t _3A[0x2];
-	float fProgress; // +3C
-	uint8_t _40[0x4];
-	uint32_t nCurrentLap; // +44
-	uint32_t nLapTimes[10]; // +48
-	uint8_t _70[0x4];
-	uint32_t nBestLapTime; // +74
-	uint32_t nFinishTime; // +78
 
 	virtual void _vf0() = 0;
 	virtual void _vf1() = 0;
 	virtual void _vf2() = 0;
 	virtual void _vf3() = 0;
 	virtual void _vf4() = 0;
-	virtual bool HasFinished() = 0;
-	virtual bool IsDNF() = 0;
-	virtual uint32_t GetFinishTime() = 0;
+	virtual bool HasFinished() = 0; // 5
+	virtual bool IsDNF() = 0; // 6
+	virtual uint32_t GetFinishTime() = 0; // 7
 	virtual void _vf8() = 0;
 	virtual void _vf9() = 0;
 	virtual void _vf10() = 0;
@@ -33,12 +23,25 @@ public:
 	virtual void _vf16() = 0;
 	virtual void _vf17() = 0;
 };
+static_assert(sizeof(PlayerScore) == 0x38);
 
-class PlayerScoreDerby {
+class PlayerScoreRace : public PlayerScore {
 public:
-	uint8_t _0[0x4];
-	uint32_t nPlayerId; // +4
-	uint8_t _8[0x31];
+	bool bHasFinished; // +38
+	bool bIsDNF; // +39
+	uint8_t _3A[0x2];
+	float fProgress; // +3C
+	uint8_t _40[0x4];
+	uint32_t nCurrentLap; // +44
+	uint32_t nLapTimes[10]; // +48
+	uint8_t _70[0x4];
+	uint32_t nBestLapTime; // +74
+	uint32_t nFinishTime; // +78
+};
+
+class PlayerScoreDerby : public PlayerScore {
+public:
+	uint8_t _38[0x1];
 	uint8_t bKnockedOut; // +39 can be both wrecked or out of time, not set in dm derby
 	uint8_t _3A[0x2];
 	uint32_t nContactTimerCurrentTick; // +3C
@@ -52,33 +55,30 @@ public:
 	float fScoreMultiplier; // +84
 };
 
-class PlayerScoreTest {
+class PlayerScoreTest : public PlayerScore {
 public:
-	uint8_t _0[0x4];
-	uint32_t nPlayerId; // +4
-	uint8_t _8[0x30];
 	uint32_t nTopSpeed; // +38
 };
 
-class PlayerScoreBeatTheBomb {
+class PlayerScoreBeatTheBomb : public PlayerScore {
 public:
-	uint8_t _0[0x4];
-	uint32_t nPlayerId; // 4
-	uint8_t _8[0x4C];
-	float fScore; // 54
+	uint8_t _38[0x1C];
+	float fScore; // +54
 	uint8_t _58[0x4];
-	int32_t nTimeLeft; // 5C
+	int32_t nTimeLeft; // +5C
 };
 
-class PlayerScoreArcadeRace {
+class PlayerScoreArcadeRace : public PlayerScore {
 public:
-	uint8_t _0[0x4];
-	uint32_t nPlayerId; // +4
-	uint32_t nPosition; // +8
-	uint8_t _C[0x74];
-	int32_t nTimeLeft; // 80
+	uint8_t _38[0x48];
+	int32_t nTimeLeft; // +80
 	uint8_t _84[0xC];
-	float fScore; // 90
+	float fScore; // +90
+};
+
+class PlayerScoreStunt : public PlayerScore {
+public:
+	float fScore; // +38
 };
 
 class ScoreManager {
