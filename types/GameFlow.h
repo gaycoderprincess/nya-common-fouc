@@ -7,7 +7,7 @@ public:
 	uint8_t _9B4[0xEE04];
 	void* pUnkForLOS; // +F7B8
 	uint8_t _F7BC[0x111E0];
-	uint32_t nRaceTime; // +2099C
+	int32_t nRaceTime; // +2099C
 
 	int GetNumPlayers() {
 		return aPlayers.GetSize();

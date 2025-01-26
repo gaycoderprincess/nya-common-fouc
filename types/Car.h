@@ -53,9 +53,14 @@ public:
 	uint32_t nIsSkinCharred; // +1CC8
 	uint8_t _1CCC[0x74];
 	float fMass; // +1D40
-	uint8_t _1D44[0x54];
+	uint8_t _1D44[0x10];
+	float vCenterOfMassAbsolute[3]; // +1D54
+	uint8_t _1D60[0xC];
+	float vDriverLocAbsolute[3]; // +1D6C with center of mass
+	uint8_t _1D78[0x20];
 	float vDriverLoc[3]; // +1D98
-	uint8_t _1DA4[0x16C];
+	float vCenterOfMass[3]; // +1DA4
+	uint8_t _1DB0[0x160];
 	float fGasPedal; // +1F10
 	float fBrakePedal; // +1F14
 	float fNitroButton; // +1F18
