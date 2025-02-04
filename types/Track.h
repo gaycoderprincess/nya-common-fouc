@@ -1,3 +1,10 @@
+class Minimap {
+public:
+	uint8_t _0[0x290];
+	float fMapTopLeft[3]; // +290
+	float fMapBottomRight[3]; // +29C
+};
+
 class Track {
 public:
 	struct tSplitpoint {
@@ -67,7 +74,8 @@ public:
 	tStartpoint aStartpoints[32]; // +38E0
 	uint8_t _42E0[0x1540];
 	uint32_t nNumStartpoints; // +5820
-	uint8_t _5824[0x8];
+	uint8_t _5824[0x4];
+	Minimap* pMinimap; // +5828
 	void* pResetmap; // +582C
 	tMaterial Checkpoint; // +5830
 	tMaterial CheckpointOutline; // +58D0
