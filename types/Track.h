@@ -1,6 +1,29 @@
+class Material {
+public:
+	DevTexture* pTexture;
+	DevTexture* pTexture2; // glow for particles, mapmask for map texture
+	uint8_t _4[0x98];
+
+	static inline uintptr_t Init_call = 0x5A78F0;
+	__attribute__((naked)) Material() {
+		__asm__ (
+				"mov eax, ecx\n\t"
+				"jmp %0\n\t"
+				:
+				:  "m" (Init_call)
+		);
+	}
+};
+static_assert(sizeof(Material) == 0xA0);
+
 class Minimap {
 public:
-	uint8_t _0[0x290];
+	uint32_t bMapInitialized; // +0
+	uint8_t _4[0xC];
+	Material Map; // +10
+	uint8_t _B0[0xA0];
+	Material MapIcons; // +150
+	Material PowerupIcon; // +1F0
 	float fMapTopLeft[3]; // +290
 	float fMapBottomRight[3]; // +29C
 };
@@ -20,13 +43,6 @@ public:
 		float fMatrix[4*4];
 	};
 	static_assert(sizeof(tStartpoint) == 0x50);
-
-	struct tMaterial {
-		DevTexture* pTexture;
-		DevTexture* pTexture2; // usually glow? at least for particles
-		uint8_t _4[0x98];
-	};
-	static_assert(sizeof(tMaterial) == 0xA0);
 
 	uint8_t _0[0x294];
 	float fUnkForLOS; // +294
@@ -49,10 +65,10 @@ public:
 	float fMaxObjectVisibility; // +2014
 	float fMaxObjectVisibilityInReflection; // +2018
 	uint8_t _201C[0x14];
-	tMaterial Skidmark; // +2030
-	tMaterial Particles; // +20D0
-	tMaterial ParticlesAmbient; // +2170
-	tMaterial PowerlineAlpha; // +2210
+	Material Skidmark; // +2030
+	Material Particles; // +20D0
+	Material ParticlesAmbient; // +2170
+	Material PowerlineAlpha; // +2210
 	DevTexture* pParticlesSparks; // +22B0
 	uint8_t _22B4[0x14];
 	float fWaterColorMin[3]; // +22C8
@@ -77,9 +93,9 @@ public:
 	uint8_t _5824[0x4];
 	Minimap* pMinimap; // +5828
 	void* pResetmap; // +582C
-	tMaterial Checkpoint; // +5830
-	tMaterial CheckpointOutline; // +58D0
-	tMaterial PowerupMaterials[7]; // +5970
+	Material Checkpoint; // +5830
+	Material CheckpointOutline; // +58D0
+	Material PowerupMaterials[7]; // +5970
 	void* pPowerupManager; // +5DD0
 	uint8_t _5DD4[0xC];
 };
