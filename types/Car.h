@@ -14,6 +14,14 @@ public:
 };
 static_assert(sizeof(Gearbox) == 0xC4);
 
+class Object {
+public:
+	uint8_t _0[0x40];
+	float mMatrix[4*4]; // +40
+	uint8_t _80[0x4C];
+	FO2String sName; // +CC
+};
+
 class Player;
 class DevTexture;
 class Car {
@@ -55,7 +63,9 @@ public:
 	Gearbox mGearbox; // +614
 	uint8_t _6D8[0x358];
 	Tire aTires[4]; // +A30
-	uint8_t _18F0[0x3C0];
+	uint8_t _18F0[0x390];
+	FO2Vector<Object*> aObjects; // +1C80
+	uint8_t _1C8C[0x24];
 	FO2Vector<DevTexture*> aTextureNodes; // +1CB0
 	uint8_t _1CBC[0xC];
 	uint32_t nIsSkinCharred; // +1CC8
@@ -117,6 +127,14 @@ public:
 		return (NyaVec3*)vAngImpulse;
 	}
 #endif
+
+	// 4403C0
+	Object* GetObjectByName(const std::string& name) {
+		for (int i = 0; i < aObjects.GetSize(); i++) {
+			if (aObjects[i]->sName.Get() == name) return aObjects[i];
+		}
+		return nullptr;
+	}
 
 	static inline auto CalculatePerformance = (void(*)(float* out, float torque, float torqueRPM, float power, float powerRPM, float zeroRPM, float redlineRPM))0x45C750;
 	static inline auto LoadDriveLights = (void(__stdcall*)(Car*, const char* dataPath))0x433420;
