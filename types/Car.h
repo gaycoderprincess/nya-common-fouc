@@ -6,7 +6,13 @@ public:
 };
 static_assert(sizeof(Tire) == 0x3B0);
 
-// todo: gear is at 65C overall, part of Gearbox
+class Gearbox {
+public:
+	uint8_t _0[0x48];
+	uint8_t nGear; // +48
+	uint8_t _49[0x7B];
+};
+static_assert(sizeof(Gearbox) == 0xC4);
 
 class Player;
 class DevTexture;
@@ -45,7 +51,9 @@ public:
 	uint8_t _33C[0x2B0];
 	float fNitro; // +5EC
 	float fMaxNitro; // +5F0
-	uint8_t _5F4[0x43C];
+	uint8_t _5F4[0x20];
+	Gearbox mGearbox; // +614
+	uint8_t _6D8[0x358];
 	Tire aTires[4]; // +A30
 	uint8_t _18F0[0x3C0];
 	FO2Vector<DevTexture*> aTextureNodes; // +1CB0
@@ -70,7 +78,10 @@ public:
 	DevTexture* pShadow; // +3400
 	uint8_t _3404[0x18C];
 	int nIsRagdolled; // +3590
-	uint8_t _3594[0xE6C];
+	uint8_t _3594[0xBD4];
+	float vEngineFirePosition[3]; // +4168
+	float vEngineSmokePosition[3]; // +4174
+	uint8_t _4180[0x280];
 	DevTexture* pSkinBurned; // +4400
 	DevTexture* pTireBurned; // +4404
 	DevTexture* pSkin; // +4408
