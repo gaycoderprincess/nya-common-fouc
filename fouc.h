@@ -70,7 +70,45 @@ void __attribute__((naked)) __fastcall CheckFileIntegrity(void* a1, const char* 
 auto sTextureFolder = (const char*)0x845B78;
 auto sSharedTextureFolder = (const char*)0x845C80;
 
-auto BFSManager_DoesFileExist = (bool(__stdcall*)(void*, const char*, int*))0x5B7170;
+class BFSManager {
+public:
+
+	static inline auto DoesFileExist = (bool(__stdcall*)(BFSManager*, const char*, int*))0x5B7170;
+};
+auto& pBFSManager = *(BFSManager**)0x846688;
+auto DoesFileExist = (bool(__cdecl*)(const char*, char))0x5A5B80;
+
+class FileCodec {
+public:
+	uint32_t _4[0];
+
+	virtual void _vf0() = 0;
+	virtual void _vf1() = 0;
+	virtual void _vf2() = 0;
+	virtual void _vf3() = 0;
+	virtual void _vf4() = 0;
+	virtual void _vf5() = 0;
+	virtual void _vf6() = 0;
+	virtual void _vf7() = 0;
+	virtual size_t GetFileSize() = 0;
+	virtual uint32_t GetFlags() = 0;
+	virtual void _vf10() = 0;
+	virtual void _vf11() = 0;
+	virtual void _vf12() = 0;
+	virtual void _vf13() = 0;
+	virtual void _vf14() = 0;
+	virtual void _vf15() = 0;
+};
+
+class File {
+public:
+	uint8_t _0[0x20];
+	FileCodec* pFileCodec;
+
+	static inline auto ReadBytes = (int(__thiscall*)(File*, void* out, int numBytes, int))0x5A5980;
+};
+
+auto ParseGameDDS = (bool(__thiscall*)(DevTexture* pThis, File* pFile, uint8_t* header))0x625AF0;
 
 auto& pGameFilesChecksum1 = *(uint8_t**)0x825520; // uint8_t[20]
 auto& pGameFilesChecksum2 = *(uint8_t**)0x82551C; // uint8_t[41]
