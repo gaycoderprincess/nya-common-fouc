@@ -128,3 +128,19 @@ const char* GetTrackValueString(int id, const char* name) {
 const char* GetTrackName(int id) {
 	return GetTrackValueString(id, "Name");
 }
+
+int GetNumSkinsForCar(int dbCar) {
+	auto path = "data/cars/car_" + std::to_string(GetCarDataPath(dbCar, false)) + "/skin";
+	int i;
+	for (i = 0; i < 255; i++) {
+		auto file1 = (path + std::to_string(i+1) + ".dds");
+		auto file2 = (path + std::to_string(i+1) + "_damaged.dds");
+		auto file3 = (path + std::to_string(i+1) + "_damaged_normal.dds");
+		auto file4 = (path + std::to_string(i+1) + "_normal.dds");
+		auto file5 = (path + std::to_string(i+1) + "_specular.dds");
+		if (!DoesFileExist(file1.c_str(), 0) || !DoesFileExist(file2.c_str(), 0) || !DoesFileExist(file3.c_str(), 0) || !DoesFileExist(file4.c_str(), 0) || !DoesFileExist(file5.c_str(), 0)) {
+			break;
+		}
+	}
+	return i;
+}
