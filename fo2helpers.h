@@ -144,3 +144,14 @@ int GetNumSkinsForCar(int dbCar) {
 	}
 	return i;
 }
+
+tGameSetting* GetGameSettingByName(const std::string& name) {
+	auto setting = aGameSettings;
+	while (setting->name) {
+		if (setting->name == name) {
+			return setting;
+		}
+		setting++;
+	}
+	return nullptr;
+}
