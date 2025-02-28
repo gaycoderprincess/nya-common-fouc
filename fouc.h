@@ -40,7 +40,7 @@ auto& gGameRegion = *(int*)0x849314;
 
 struct tLineOfSightIn {
 	float fMaxDistance = 100.0;
-	float* fUnk4 = nullptr;
+	SurfacePhysics* pSurfacePhysics = nullptr;
 	bool bGetClosestHit = false; // returns first match if false
 	bool bIgnoreBackfaces = true;
 	bool bSave4and8 = false;
@@ -49,7 +49,7 @@ struct tLineOfSightIn {
 
 	tLineOfSightIn() {
 		if (auto env = pEnvironment) {
-			fUnk4 = &env->fUnkForLOS;
+			pSurfacePhysics = env->aSurfacePhysics;
 		}
 	}
 };

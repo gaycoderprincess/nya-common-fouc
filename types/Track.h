@@ -28,6 +28,40 @@ public:
 	float fMapBottomRight[3]; // +29C
 };
 
+class Surface {
+public:
+	uint32_t nDynamics; // +0
+	uint32_t nReset; // +4
+	uint32_t nParticleCollision; // +8
+	uint32_t nCollisionSound; // +C
+	uint32_t nSurfaceSound; // +10
+	float fFriction; // +14
+	float fBodyFriction; // +18
+	float fStiffness; // +1C
+	float fRoughness; // +20
+	float fDamage; // +24
+	uint32_t nRoadEffect1[2]; // +28
+	uint32_t nRoadEffect2[2]; // +30
+	uint32_t nBodyEffect1[2]; // +38
+	uint32_t nRumbleEffect; // +40
+	uint32_t nSkidMarks; // +44
+	uint8_t bSparks; // +48
+	uint8_t bBodyCollision; // +49
+	uint8_t bCameraCollision; // +4A
+	uint8_t bRayCollision; // +4B
+};
+static_assert(sizeof(Surface) == 0x4C);
+
+class SurfacePhysics {
+public:
+	float fFriction; // +0
+	float fBodyFriction; // +4
+	float fStiffness; // +8
+	uint32_t nCollisionSound; // +C
+	uint32_t nParticleCollision; // +10
+	uint32_t nCollisionFlags; // +14
+};
+
 class Track {
 public:
 	struct tSplitpoint {
@@ -45,8 +79,9 @@ public:
 	static_assert(sizeof(tStartpoint) == 0x50);
 
 	uint8_t _0[0x294];
-	float fUnkForLOS; // +294
-	uint8_t _298[0x194C];
+	SurfacePhysics aSurfacePhysics[64]; // +294
+	Surface aSurfaces[64]; // +894
+	uint8_t _1B94[0x50];
 	float fTreeLodFadeBegin; // +1BE4
 	float fTreeLodFadeEnd; // +1BE8
 	float fTreeLodNullDistance; // +1BEC
