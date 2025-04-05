@@ -164,7 +164,9 @@ public:
 	PlayerHost* pHost; // +2820
 	uint8_t _2824[0xC];
 	MenuInterface* pMenuInterface; // +2830
-	uint8_t _2834[0x61C];
+	uint8_t _2834[0x160];
+	const char* sArcadeEventName; // +2994
+	uint8_t _2998[0x4B8];
 	PlayerProfile Profile; // +2E50
 
 	static inline auto& fArcadeRewardWhammo = *(float*)0x765080;
