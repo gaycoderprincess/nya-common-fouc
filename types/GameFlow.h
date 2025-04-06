@@ -6,7 +6,11 @@ public:
 	float fPlayerVsAIFudgeFactor; // +9B0
 	uint8_t _9B4[0xEE04];
 	void* pUnkForLOS; // +F7B8
-	uint8_t _F7BC[0x111E0];
+	uint8_t _F7BC[0x111D0];
+	uint32_t nLevelId; // +2098C
+	uint32_t nStageId; // +20990
+	uint32_t nWeatherId; // +20994
+	uint8_t _20998[0x4];
 	int32_t nRaceTime; // +2099C
 
 	int GetNumPlayers() {

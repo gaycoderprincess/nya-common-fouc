@@ -185,7 +185,9 @@ public:
 	FO2String sGFXSetPath; // +2730
 	FO2String sTrackPath; // +274C
 	FO2String sStagePath; // +2768
-	uint8_t _2784[0x154];
+	uint8_t _2784[0x14C];
+	uint32_t nLevelId; // +28D0
+	uint32_t nStageId; // +28D4
 	uint32_t nNumSplitpoints; // +28D8
 	tSplitpoint aSplitpoints[32]; // +28DC
 	uint8_t _30DC[0x804];
