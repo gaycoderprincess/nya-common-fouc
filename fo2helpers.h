@@ -27,6 +27,25 @@ int GetCarDBID(int dataId) {
 	return -1;
 }
 
+int GetCarDataID_slow(int dbId) {
+	static int matchups[1024];
+	static bool bOnce = true;
+	if (bOnce) {
+		for (auto& i : matchups) {
+			i = -1;
+		}
+		bOnce = false;
+	}
+
+	if (matchups[dbId] != -1) return matchups[dbId];
+
+	auto db = GetLiteDB();
+	auto table = db->GetTable(std::format("FlatOut2.Cars.Car[{}]", dbId).c_str());
+	auto str = (const char*)table->GetPropertyPointer("DataPath");
+	matchups[dbId] = std::stoi(&str[14]);
+	return matchups[dbId];
+}
+
 std::string GetCarDataPath(int dbId) {
 	auto db = GetLiteDB();
 	auto table = db->GetTable(std::format("FlatOut2.Cars.Car[{}]", dbId).c_str());
