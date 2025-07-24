@@ -125,7 +125,7 @@ float GetTrackValueNumber(int id, const char* name) {
 	return f;
 }
 
-const char* GetTrackValueString(int id, const char* name) {
+std::string GetTrackValueString(int id, const char* name) {
 	if (!DoesTrackValueExist(id, name)) return nullptr;
 
 	auto lua = pScriptHost->pLUAStruct->pLUAContext;
@@ -137,15 +137,26 @@ const char* GetTrackValueString(int id, const char* name) {
 	auto oldtop2 = lua_gettop(lua);
 	lua_setglobal(lua, name);
 	lua_gettable(lua, oldtop2);
-	auto str = (const char*)lua_tolstring(lua, lua_gettop(lua), 0);
+	std::string str;
+	if (lua_type(lua, lua_gettop(lua)) == 3) { // int, translated language entry
+		std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
+		str = converter.to_bytes(GetPhrase(luaL_checknumber(lua, lua_gettop(lua))));
+	}
+	else {
+		str = (const char*)lua_tolstring(lua, lua_gettop(lua), 0);
+	}
 
 	lua_settop(lua, oldtop);
 
 	return str;
 }
 
-const char* GetTrackName(int id) {
+std::string GetTrackName(int id) {
 	return GetTrackValueString(id, "Name");
+}
+
+std::string GetTrackDescription(int id) {
+	return GetTrackValueString(id, "Description");
 }
 
 int GetNumSkinsForCar(int dbCar) {

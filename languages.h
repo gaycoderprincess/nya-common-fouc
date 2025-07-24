@@ -1,8 +1,4 @@
-#ifndef __LANGUAGES_H__
-#define __LANGUAGES_H__
-
-enum Phrases
-{
+enum Phrases {
 	PS2_NET_YES = 0,
 	PS2_NET_NO = 1,
 	PS2_NET_OK = 2,
@@ -2633,4 +2629,4 @@ enum Phrases
 	PHRASE_COUNT
 };
 
-#endif
+auto GetPhrase = (const wchar_t*(__fastcall*)(int))0x459DF0;
