@@ -126,7 +126,7 @@ float GetTrackValueNumber(int id, const char* name) {
 }
 
 std::string GetTrackValueString(int id, const char* name) {
-	if (!DoesTrackValueExist(id, name)) return nullptr;
+	if (!DoesTrackValueExist(id, name)) return "";
 
 	auto lua = pScriptHost->pLUAStruct->pLUAContext;
 	auto oldtop = lua_gettop(lua);

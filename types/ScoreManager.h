@@ -41,7 +41,7 @@ public:
 
 class PlayerScoreDerby : public PlayerScore {
 public:
-	uint8_t _38[0x1];
+	uint8_t bHasFinished; // +38
 	uint8_t bKnockedOut; // +39 can be both wrecked or out of time, not set in dm derby
 	uint8_t _3A[0x2];
 	uint32_t nContactTimerCurrentTick; // +3C
