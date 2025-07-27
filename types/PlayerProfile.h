@@ -30,7 +30,9 @@ public:
 	} aArcadeClasses[0]; // +3D0
 	uint8_t _3D0[0xEA0];
 	wchar_t sPlayerName[16]; // +1270
-	uint8_t _1290[0x2A];
+	uint8_t _1290[0x24];
+	int32_t nMoney; // +12B4
+	uint8_t _12B8[0x2];
 	uint8_t nActiveCar; // +12BA
 	uint8_t _12BB[0x3];
 	uint8_t aCupPoints[12]; // +12BE
