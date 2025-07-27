@@ -55,7 +55,9 @@ public:
 	uint32_t nSomeFlags; // +8E4
 	uint8_t _8E8[0x18];
 	float fTimeInAirForBonus; // +900
-	uint8_t _904[0x38];
+	uint8_t _904[0x4];
+	float fSceneryCrashForBonus; // +908
+	uint8_t _90C[0x30];
 
 	static inline uintptr_t DrawJoinedGameNotification_call = 0x4E1B00;
 	void __attribute__((naked)) __fastcall DrawJoinedGameNotification(const wchar_t* string) {
