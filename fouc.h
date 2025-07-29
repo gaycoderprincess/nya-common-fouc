@@ -10,6 +10,7 @@
 #include "types/LiteDb.h"
 #include "types/Car.h"
 #include "types/ScoreManager.h"
+#include "types/Garage.h"
 #include "types/PlayerProfile.h"
 #include "types/Controller.h"
 #include "types/Player.h"
@@ -17,7 +18,6 @@
 #include "types/MenuInterface.h"
 #include "types/GameFlow.h"
 #include "types/EventManager.h"
-#include "types/Garage.h"
 #include "types/GameSettings.h"
 #include "types/DeviceD3d.h"
 #ifndef NYA_COMMON_NO_D3D

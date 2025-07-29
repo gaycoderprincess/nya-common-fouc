@@ -28,7 +28,9 @@ public:
 		ArcadeRace* races;
 		uint32_t numRaces;
 	} aArcadeClasses[0]; // +3D0
-	uint8_t _3D0[0xEA0];
+	uint8_t _3D0[0x30];
+	Garage Garage; // +400
+	uint8_t _464[0xE0C];
 	wchar_t sPlayerName[16]; // +1270
 	uint8_t _1290[0x24];
 	int32_t nMoney; // +12B4
