@@ -21,9 +21,37 @@ public:
 };
 static_assert(sizeof(ArcadeRace) == 0x70);
 
+class CareerClass {
+public:
+	struct tCup {
+		int nCupId; // +0
+		int nRules; // +4
+	};
+
+	struct tSubclass {
+		tCup* aCups; // +0
+		tCup* aEvents; // +4
+		int nNumCups; // +8
+		int nNumEvents; // +C
+		int nMoneyAward; // +10
+		int nNumCarUnlock; // +14
+		int aCarUnlock[8]; // +18
+	};
+	static_assert(sizeof(tSubclass) == 0x38);
+
+	const char* sName; // +0
+	tSubclass aSubclasses[4]; // +4
+	int nNumSubclasses; // +E4
+	int nNumCups; // +E8
+	int nNumEvents; // +EC
+};
+static_assert(sizeof(CareerClass) == 0xF0);
+
 class PlayerProfile {
 public:
-	uint8_t _0[0x3D0];
+	uint8_t _0[0xC];
+	CareerClass aClasses[4]; // +C
+	uint8_t _3CC[0x4];
 	struct {
 		ArcadeRace* races;
 		uint32_t numRaces;
