@@ -73,3 +73,13 @@ auto CheckLineOfSight = (bool(__stdcall*)(tLineOfSightIn* prop, void* pUnkFromPl
 #else
 auto CheckLineOfSight = (bool(__stdcall*)(tLineOfSightIn* prop, void* pUnkFromPlayerHost, float* start, float* dir, tLineOfSightOut* out))0x5CB8E0;
 #endif
+
+class Language {
+public:
+	uint32_t nNumEntries; // +0
+	struct {
+		const wchar_t* string; // +0
+		uint32_t length; // +4
+	} aEntries[0]; // +4
+};
+auto& pLanguage = *(Language**)0x8464D8;
