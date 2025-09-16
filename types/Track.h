@@ -217,7 +217,8 @@ static_assert(sizeof(Sector) == 0xC8);
 
 class TrackAI {
 public:
-	uint8_t _0[0xE4];
+	uint8_t _0[0xE0];
+	uint32_t nNumSectors; // +E0
 	Sector* aSectors; // +E4
 	uint8_t _E8[0x328];
 	uint32_t nNumSplines; // +410
