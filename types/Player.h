@@ -24,7 +24,10 @@ public:
 	int32_t nRaceTime; // +30C
 	uint8_t _310[0x4];
 	uint32_t nFrameTime; // +314
-	uint8_t _318[0xCC];
+	uint8_t _318[0x2C];
+	Sector* pCurrentSector; // +344
+	Sector* pLastSector; // +348
+	uint8_t _34C[0x98];
 	uint32_t nCurrentSplit; // +3E4
 	uint32_t nCurrentLap; // +3E8
 	uint8_t _3EC[0x54];

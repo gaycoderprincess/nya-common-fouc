@@ -207,9 +207,19 @@ static_assert(sizeof(Track) == 0x5DE0);
 
 auto& pEnvironment = *(Track**)0x8465F0;
 
+class Sector {
+public:
+	uint8_t _0[0x98];
+	float fSpeedLimit; // +98
+	uint8_t _9C[0x2C];
+};
+static_assert(sizeof(Sector) == 0xC8);
+
 class TrackAI {
 public:
-	uint8_t _0[0x410];
+	uint8_t _0[0xE4];
+	Sector* aSectors; // +E4
+	uint8_t _E8[0x328];
 	uint32_t nNumSplines; // +410
 	uint8_t _414[0x54];
 	Track* pTrack; // +468
