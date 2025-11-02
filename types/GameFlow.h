@@ -2,7 +2,8 @@ class PlayerHost {
 public:
 	uint8_t _0[0x14];
 	FO2Vector<Player*> aPlayers; // +14
-	uint8_t _20[0x990];
+	FO2Vector<Player*> aLocalPlayers; // +20
+	uint8_t _2C[0x984];
 	float fPlayerVsAIFudgeFactor; // +9B0
 	uint8_t _9B4[0xEE04];
 	void* pUnkForLOS; // +F7B8

@@ -24,7 +24,9 @@ public:
 	int32_t nRaceTime; // +30C
 	uint8_t _310[0x4];
 	uint32_t nFrameTime; // +314
-	uint8_t _318[0x2C];
+	uint8_t _318[0xC];
+	FO2WString sPlayerName; // +324
+	uint8_t _340[0x4];
 	Sector* pCurrentSector; // +344
 	Sector* pLastSector; // +348
 	uint8_t _34C[0x98];
