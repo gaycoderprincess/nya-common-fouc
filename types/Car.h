@@ -4,15 +4,73 @@ public:
 };
 static_assert(sizeof(TireDynamics) == 0x58);
 
-class Tire {
+class Object {
 public:
-	uint8_t _0[0x344];
+	uint8_t _0[0x40];
+	float mMatrix[4*4]; // +40
+	uint8_t _80[0x4C];
+	FO2String sName; // +CC
+	uint8_t _E8[0x8];
+
+#ifdef NYA_MATH_H
+	inline NyaMat4x4* GetMatrix() {
+		return (NyaMat4x4*)mMatrix;
+	}
+#endif
+};
+static_assert(sizeof(Object) == 0xF0);
+
+class Tire : public Object {
+public:
+	// +0 vtable
+	// +4 some ptr
+	// +18 some float related to wheel speed decay, 0.5
+	// +2C wheel speed!!
+	// +30 some float related to wheel speed decay
+	// +3C some float related to wheel speed decay, -2000
+	// +1DC wheel radius
+	// +210 might be useful, its checked against at 0042A9E7
+	// +224 some ptr
+	// +228 slidecontrol related, 0.1971743107
+	// +240 brake torque
+	// +244 tire smoke rear
+	// +248 tire smoke side, 100 seems to be a reasonable value (to the left)
+	// +24C wheel rotation!!
+	// +25C steer angle offset
+	// +2AC
+	// +2B0 skid sound scale!! 10 is still off, 11 is where it begins, 15 is around max
+	// +2B4 skid sound scale!! 0-50 or so
+
+	uint8_t _F0[0x2C];
+	float fTurnSpeed; // +11C
+	uint8_t _120[0x1AC];
+	float fRadius; // +2CC
+	uint8_t _2D0[0x60];
+	float fBrakeTorque; // +330
+	float fTireSmokeZ; // +334
+	float fTireSmokeX; // +338
+	float fWheelAngle; // +33C
+	uint8_t _340[0x4];
 	uint32_t bOnGround; // +344
-	uint8_t _348[0x10];
+	uint8_t _348[0x4];
+	float fDamagedSteer; // +34C
+	uint8_t _350[0x8];
 	TireDynamics* pGroundSurface; // +358
-	uint8_t _35C[0x54];
+	uint8_t _35C[0x44];
+	float fSkidSound1; // +3A0
+	float fSkidSound2; // +3A4
+	uint8_t _3A8[0x8];
 };
 static_assert(sizeof(Tire) == 0x3B0);
+static_assert(offsetof(Tire, fTurnSpeed) == 0xF0+0x2C);
+static_assert(offsetof(Tire, fRadius) == 0xF0+0x1DC);
+static_assert(offsetof(Tire, fBrakeTorque) == 0xF0+0x240);
+static_assert(offsetof(Tire, fTireSmokeZ) == 0xF0+0x244);
+static_assert(offsetof(Tire, fTireSmokeX) == 0xF0+0x248);
+static_assert(offsetof(Tire, fDamagedSteer) == 0xF0+0x25C);
+static_assert(offsetof(Tire, fSkidSound1) == 0xF0+0x2B0);
+static_assert(offsetof(Tire, fSkidSound2) == 0xF0+0x2B4);
+static_assert(offsetof(Tire, pGroundSurface) == 0x358);
 
 class Gearbox {
 public:
@@ -21,14 +79,6 @@ public:
 	uint8_t _49[0x7B];
 };
 static_assert(sizeof(Gearbox) == 0xC4);
-
-class Object {
-public:
-	uint8_t _0[0x40];
-	float mMatrix[4*4]; // +40
-	uint8_t _80[0x4C];
-	FO2String sName; // +CC
-};
 
 class Player;
 class DevTexture;
