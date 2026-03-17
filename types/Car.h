@@ -146,7 +146,9 @@ public:
 	float fSteerAngle; // +1F20
 	uint8_t _1F24[0x54];
 	TireDynamics TireDynamics[8]; // +1F78
-	uint8_t _2238[0x11C8];
+	uint8_t _2238[0x790];
+	int nGroundSurfaces[4]; // +29C8
+	uint8_t _29CC[0xA28];
 	DevTexture* pShadow; // +3400
 	uint8_t _3404[0x18C];
 	int nIsRagdolled; // +3590
@@ -219,6 +221,7 @@ public:
 static_assert(offsetof(Car, fRPM) == 0x5F8);
 static_assert(offsetof(Car, mGearbox.nGear) == 0x65C);
 static_assert(offsetof(Car, fSteerAngle) == 0x1F20);
+static_assert(offsetof(Car, nGroundSurfaces) == 0x29C8);
 static_assert(offsetof(Car, aTires[0].bOnGround) == 0xD74);
 static_assert(offsetof(Car, aTires[0].pGroundSurface) == 0xD88);
 static_assert(offsetof(Car, pShadow) == 0x3400);
