@@ -185,3 +185,32 @@ tGameSetting* GetGameSettingByName(const std::string& name) {
 	}
 	return nullptr;
 }
+
+class CNyaRaceTimer {
+public:
+	int32_t nLastUpdate = 0;
+	double fDeltaTime = 0;
+	double fTotalTime = 0;
+	double fMinDelta = 1.0 / 10.0; // delta for 10fps by default, any less and it's capped
+
+	CNyaRaceTimer() { }
+	CNyaRaceTimer(float minDelta) {
+		fMinDelta = minDelta;
+	}
+	double Process() {
+		if (pLoadingScreen || !pPlayerHost || !pGameFlow->pHost || pGameFlow->pMenuInterface) {
+			fDeltaTime = 0;
+			nLastUpdate = 0;
+			return 0;
+		}
+
+		auto now = pPlayerHost->nRaceTime;
+		fDeltaTime = (now - nLastUpdate) / 1000.0;
+		if (fDeltaTime < 0) fDeltaTime = 0;
+		nLastUpdate = now;
+
+		if (fDeltaTime > fMinDelta) fDeltaTime = fMinDelta;
+		fTotalTime += fDeltaTime;
+		return fDeltaTime;
+	}
+};

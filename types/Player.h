@@ -1,11 +1,21 @@
 struct tEventData;
 
+class IngameHUD {
+public:
+	uint8_t _0[0x6B8];
+	float fRPMFraction; // +6B8
+	int nGear; // +6BC
+};
+static_assert(offsetof(IngameHUD, fRPMFraction) == 0x6B8);
+static_assert(offsetof(IngameHUD, nGear) == 0x6BC);
+
 class Player {
 public:
 	uint8_t _4[0x220];
 	uint32_t nArrowColor; // +224
 	uint32_t nArrowColorId; // +228
-	uint8_t _22C[0x58];
+	IngameHUD* pIngameHUD; // +22C
+	uint8_t _230[0x54];
 	Controller* pController; // +284
 	uint8_t _288[0xC];
 	Car* pCar; // +294

@@ -59,7 +59,9 @@ public:
 	uint8_t _33C[0x2B0];
 	float fNitro; // +5EC
 	float fMaxNitro; // +5F0
-	uint8_t _5F4[0x20];
+	uint8_t _5F4[0x4];
+	float fRPM; // +5F8
+	uint8_t _5FC[0x18];
 	Gearbox mGearbox; // +614
 	uint8_t _6D8[0x358];
 	Tire aTires[4]; // +A30
@@ -114,6 +116,9 @@ public:
 	inline NyaMat4x4* GetMatrix() {
 		return (NyaMat4x4*)mMatrix;
 	}
+	inline NyaVec4* GetQuaternion() {
+		return (NyaVec4*)qQuaternion;
+	}
 	inline NyaVec3* GetVelocity() {
 		return (NyaVec3*)vVelocity;
 	}
@@ -151,6 +156,8 @@ public:
 		);
 	}
 };
+static_assert(offsetof(Car, fRPM) == 0x5F8);
+static_assert(offsetof(Car, mGearbox.nGear) == 0x65C);
 
 uintptr_t GetCarDataPath_call = 0x4C6340;
 int __attribute__((naked)) __fastcall GetCarDataPath(int dbCar, bool isMenuCar) {
