@@ -1,8 +1,16 @@
+class TireDynamics {
+public:
+	uint8_t _0[0x58];
+};
+static_assert(sizeof(TireDynamics) == 0x58);
+
 class Tire {
 public:
 	uint8_t _0[0x344];
 	uint32_t bOnGround; // +344
-	uint8_t _348[0x68];
+	uint8_t _348[0x10];
+	TireDynamics* pGroundSurface; // +358
+	uint8_t _35C[0x54];
 };
 static_assert(sizeof(Tire) == 0x3B0);
 
@@ -86,7 +94,9 @@ public:
 	float fNitroButton; // +1F18
 	float fHandbrake; // +1F1C
 	float fSteerAngle; // +1F20
-	uint8_t _1F24[0x14DC];
+	uint8_t _1F24[0x54];
+	TireDynamics TireDynamics[8]; // +1F78
+	uint8_t _2238[0x11C8];
 	DevTexture* pShadow; // +3400
 	uint8_t _3404[0x18C];
 	int nIsRagdolled; // +3590
@@ -158,6 +168,10 @@ public:
 };
 static_assert(offsetof(Car, fRPM) == 0x5F8);
 static_assert(offsetof(Car, mGearbox.nGear) == 0x65C);
+static_assert(offsetof(Car, fSteerAngle) == 0x1F20);
+static_assert(offsetof(Car, aTires[0].bOnGround) == 0xD74);
+static_assert(offsetof(Car, aTires[0].pGroundSurface) == 0xD88);
+static_assert(offsetof(Car, pShadow) == 0x3400);
 
 uintptr_t GetCarDataPath_call = 0x4C6340;
 int __attribute__((naked)) __fastcall GetCarDataPath(int dbCar, bool isMenuCar) {
