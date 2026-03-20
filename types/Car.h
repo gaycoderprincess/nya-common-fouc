@@ -75,7 +75,7 @@ static_assert(offsetof(Tire, pGroundSurface) == 0x358);
 class Gearbox {
 public:
 	uint8_t _0[0x48];
-	uint8_t nGear; // +48
+	int8_t nGear; // +48
 	uint8_t _49[0x7B];
 };
 static_assert(sizeof(Gearbox) == 0xC4);
