@@ -17,7 +17,8 @@ public:
 	IngameHUD* pIngameHUD; // +22C
 	uint8_t _230[0x54];
 	Controller* pController; // +284
-	uint8_t _288[0xC];
+	uint32_t nAutoTransmission; // +288
+	uint8_t _28C[0x8];
 	Car* pCar; // +294
 	uint32_t nCarId; // +298
 	uint32_t nCarSkinId; // +29C
